@@ -2,6 +2,7 @@ import styles from './Landing.module.css'
 import { useEffect,useState } from 'react';
 import LoggedOutNotification from '../components/loggedOutNotification'
 import EventDisplay from '../components/EventDisplay'
+import SideBar from '../components/SideBar';
 
 
 const Landing = () => {
@@ -15,11 +16,15 @@ const Landing = () => {
     
     
     return(
-        <>  
-            <LoggedOutNotification/>
-            <EventDisplay/>
-        
-        </>
+        <div className={styles.landingPageContainer}>
+            <div className={styles.sidebarContainer}>
+                <SideBar/>
+            </div>
+            <div className={styles.landingContentContainer}>
+                <LoggedOutNotification/>
+                <EventDisplay/>
+            </div>
+        </div>
     )
 }; 
 
