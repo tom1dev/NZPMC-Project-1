@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import './Signin.css';
+import styleSignin from './Signin.module.css';
 import { Outlet, Link } from "react-router-dom";
 import LoginForm from '../components/loginForm';
 
@@ -7,7 +7,7 @@ const SignIn = () => {
     const [isSignup,setIsSignup] = useState(false);
     return(
         <>  
-            <div className='LinkContainer'><Link className='homeLink' to="/">home</Link></div>    
+            <div className={styleSignin.LinkContainer}><Link className={styleSignin.homeLink} to="/">home</Link></div>    
 
 
 

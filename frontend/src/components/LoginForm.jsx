@@ -1,4 +1,4 @@
-import '../pages/Signin.css';
+import styleSignin from '../pages/Signin.module.css';
 import {useState} from 'react';
 
 const LoginForm = ({title,isSignup,setIsSignup}) => {
@@ -45,23 +45,23 @@ const LoginForm = ({title,isSignup,setIsSignup}) => {
     }
 
     return(
-        <div className='background'>
-            <h className='header'>{title}</h>
+        <div className={styleSignin.background}>
+            <h className={styleSignin.header}>{title}</h>
             <form onSubmit={handleSubmit}>
                 
                 {isSignup && 
-                    <div className='parrameterBox'>
+                    <div className={styleSignin.parrameterBox}>
                         <h2>Name</h2> 
                         <input value={name}  onChange={handleNameChange}/>
                     </div>
                 }
 
 
-                <div className='parrameterBox'>
+                <div className={styleSignin.parrameterBox}>
                     <h2>Email</h2>
                     <input value={email}  onChange={handleEmailChange}/>
                 </div>
-                <div className='parrameterBox'>
+                <div className={styleSignin.parrameterBox}>
                     <h2>Password</h2> 
                     <input value={password}  onChange={handlePasswordChange}/>
                 </div>
@@ -75,12 +75,12 @@ const LoginForm = ({title,isSignup,setIsSignup}) => {
 
 
 
-            <div className='linkBox'>
+            <div className={styleSignin.linkBox}>
                     {   isSignup?
                         <><p>Have an account?</p>
-                        <p className='signupLink' onClick={onSignupClicked}>  Sign In</p></>:
+                        <p className={styleSignin.signupLink} onClick={onSignupClicked}>  Sign In</p></>:
                         <><p>Don't have an account?</p>
-                        <p className='signupLink' onClick={onSignupClicked}>  Sign Up</p></>
+                        <p className={styleSignin.signupLink} onClick={onSignupClicked}>  Sign Up</p></>
                     }
             </div>        
         </div>
