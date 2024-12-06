@@ -1,4 +1,4 @@
-import styles from './Landing.module.css'
+import styles from '../styles/Landing.module.css'
 import { useEffect,useState } from 'react';
 import LoggedOutNotification from '../components/loggedOutNotification'
 import EventDisplay from '../components/EventDisplay'

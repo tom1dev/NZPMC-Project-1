@@ -1,4 +1,4 @@
-import styles from '../pages/Landing.module.css'
+import styles from '../styles/Landing.module.css'
 
 
 const EventTableEntry = ({event}) => {

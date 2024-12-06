@@ -1,5 +1,5 @@
 
-import styles from '../pages/Landing.module.css'
+import styles from '../styles/Landing.module.css'
 import { useEffect,useState } from 'react';
 import EventTableEntry from '../components/EventTableEntry'
 

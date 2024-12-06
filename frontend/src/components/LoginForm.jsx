@@ -1,4 +1,4 @@
-import styleSignin from '../pages/Signin.module.css';
+import styleSignin from '../styles/Signin.module.css';
 import {useState} from 'react';
 
 const LoginForm = ({title,isSignup,setIsSignup}) => {
