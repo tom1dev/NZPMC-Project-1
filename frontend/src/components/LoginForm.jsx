@@ -27,8 +27,21 @@ const LoginForm = ({title,isSignup,setIsSignup}) => {
         setIsSignup(!isSignup);
 
     }
-    const handleSubmit = () => {
-        
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        if (!email || !password || (isSignup && !name)) {
+            alert("Please fill out all fields.");
+            return;
+        }
+
+        if(isSignup){
+            //handle submition logic with correct service
+        }else{
+            //handle submition logic with correct service
+        }
+
+
+
     }
 
     return(
@@ -54,14 +67,21 @@ const LoginForm = ({title,isSignup,setIsSignup}) => {
                 </div>
 
 
+                {isSignup ?<button type="submit">Sign Up</button>:<button type="submit">Login</button>}
                 
-                <button type="submit">Login</button>
 
 
             </form>
+
+
+
             <div className='linkBox'>
-                    <p>Don't have an account?</p>
-                    <p className='signupLink' onClick={onSignupClicked}>  Sign Up</p>
+                    {   isSignup?
+                        <><p>Have an account?</p>
+                        <p className='signupLink' onClick={onSignupClicked}>  Sign In</p></>:
+                        <><p>Don't have an account?</p>
+                        <p className='signupLink' onClick={onSignupClicked}>  Sign Up</p></>
+                    }
             </div>        
         </div>
     )

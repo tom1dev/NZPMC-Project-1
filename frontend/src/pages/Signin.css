@@ -86,7 +86,24 @@ p{
     color:black;
     cursor: pointer;
 }
-
+.LinkContainer{
+    position: absolute;
+    top:2vh;
+    left: 2vh;
+    border-radius: 20px; 
+    width: fit-content; 
+    height: fit-content;
+    background-color: #ffffff;
+}
+.homeLink{
+    font-size: 22px;
+    font-weight: bold;
+    color:#000000;
+    padding: 2vh;
+}
+.homeLink:hover{
+    color:#7A7A7A;
+}
 body {
     display: flex;
     justify-content: center;
