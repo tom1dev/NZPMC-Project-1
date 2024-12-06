@@ -1,11 +1,11 @@
 import '../pages/Signin.css';
 import {useState} from 'react';
 
-const LoginForm = ({title}) => {
+const LoginForm = ({title,isSignup,setIsSignup}) => {
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
     const [name,setName] = useState('');
-    const [isSignup,setIsSignup] = useState(false);
+
 
     const handleEmailChange = (event) =>{
         setEmail(event.target.value)
@@ -20,25 +20,21 @@ const LoginForm = ({title}) => {
         setPassword(event.target.value)
     }
 
-    const handleLogin = (event) => {
-        event.preventDefault()
-        console.log("login submitted")
 
-
-
-    }
 
     const onSignupClicked = () => {
         console.log("Sign up Clicked")
         setIsSignup(!isSignup);
 
     }
-
+    const handleSubmit = () => {
+        
+    }
 
     return(
         <div className='background'>
             <h className='header'>{title}</h>
-            <form onSubmit={handleLogin}>
+            <form onSubmit={handleSubmit}>
                 
                 {isSignup && 
                     <div className='parrameterBox'>
