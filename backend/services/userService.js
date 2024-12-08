@@ -7,12 +7,12 @@ const createUser = async (userData) => {
 
     const user = new User({name: userData.name, email: userData.email, passwordHash: hashPassword, isAdmin: userData.admin});
 
-    user.save().then(result => {
-        return true;
-      }).catch(err => {
+    user.save().catch(err => {
         console.log(err);
-        return false;
+        return null;
       })
+
+    return await SigninService.generateToken(userData.email);
     
 };
 

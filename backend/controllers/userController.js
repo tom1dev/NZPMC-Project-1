@@ -41,12 +41,16 @@ const createUser = async (request, response) => {
     const user = request.body;
 
     try {
-        const newUser = await userService.createUser(user);
-        if(newUser){
-            response.status(201).json(newUser);
+        const accessToken = await userService.createUser(user);
+
+        console.log(accessToken);
+        
+        if(accessToken){
+            response.status(201).json(accessToken);
         }else{
             response.status(400).send("User not created");
         }
+
     } catch (error) {
         response.status(500).send(error.message);
         console.log(error);
