@@ -4,7 +4,7 @@ import style from '../styles/UserPopup.module.css';
 const UserDetailsPopup = ({ showPopup, togglePopup, user}) => {
 
     return (
-        <div className={style.popupWindow} onClick={togglePopup}>
+        <div className={style.popupWindow}>
             <div className={style.popupContainer}>
                 
                     <h className={style.popupTitle}>User Details</h>
