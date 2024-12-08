@@ -1,11 +1,11 @@
 const User = require('../models/userModel');
 const UserEvents = require('../models/usersEventsModel');
-const mongoose = require('mongoose');
+const SigninService = require('./signInService');
 
 const createUser = async (userData) => {
-    const user = new User({name: userData.name, email: userData.email, passwordHash: userData.passwordHash, isAdmin: userData.admin});
-    console.log(user);
+    const hashPassword = SigninService.hashPassword(userData.passwordHash);
 
+    const user = new User({name: userData.name, email: userData.email, passwordHash: hashPassword, isAdmin: userData.admin});
 
     user.save().then(result => {
         return true;
