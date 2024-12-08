@@ -24,7 +24,7 @@ const getEventById = async (request, response) => {
     try{
         const result = await eventService.getEventById(eventId)
 
-        if(result){
+        if(result && result.length > 0){
             response.status(200).json(result);
         }else{
             response.status(404).json({message: 'Event not found'})
