@@ -1,20 +1,24 @@
-require('dotenv').config()
+const express = require('express');
+const dbConnect = require('./config/mongoDB');
+const userRouter = require('./routers/userRouter');
+const eventRouter = require('./routers/eventRouter');
 
-const express = require('express')
-const app = express()
-app.use(express.json())
+const app = express();
+app.use(express.json());
+
+//connect to database
+dbConnect();
 
 app.get('/', (request, response) => {
     response.send('<h1>Hello World!</h1>')
 })
 
-const mongoose = require('mongoose')
+//Routes
+app.use('/api/user', userRouter);
+app.use('/api/event', eventRouter);
 
-const url = process.env.MONGODB_URI;
-    
-  
-mongoose.set('strictQuery',false)
-  
-mongoose.connect(url).then(result =>{ console.log("connected to mongoDB")}).catch(error => {
-    console.log('error connecting to MongoDB:', error.message)
-  })
+//specifies the port the app is going to run on
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
