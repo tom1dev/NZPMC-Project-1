@@ -1,0 +1,27 @@
+.popupContainer{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    padding: 2vh;
+    border-radius: 20px;   
+    height: fit-content;
+    width: fit-content;
+    background-color: #ffffff;
+    border:#7f7f7f  solid  3px;
+    
+    
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+.popupWindow{
+    width:100vw;
+    height:100vh;
+    top:0;
+    left:0;
+    position: absolute;
+    z-index: 1;
+    backdrop-filter: blur(4px);
+}
