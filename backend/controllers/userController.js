@@ -8,12 +8,15 @@ const getUserById = async (request, response) => {
 
 const createUser = async (request, response) => {
 
+}
 
-
+const getUserEvents = async (request, response) => {
+    
 }
 
 module.exports = {
     getAllUsers,
     getUserById,
-    createUser
+    createUser,
+    getUserEvents
 }
