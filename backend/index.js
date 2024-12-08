@@ -14,8 +14,8 @@ app.get('/', (request, response) => {
 })
 
 //Routes
-// app.use('/api/user', userRouter);
-// app.use('/api/event', eventRouter);
+app.use('/api/user', userRouter);
+app.use('/api/event', eventRouter);
 
 //specifies the port the app is going to run on
 const PORT = process.env.PORT || 5000;
