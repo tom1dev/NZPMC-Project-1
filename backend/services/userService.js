@@ -29,6 +29,13 @@ const getUserById = async (userId) => {
     });
 };
 
+const getUserByEmail = async (email) => {
+    return await User.find({ email: email}).catch(err => {
+        console.log(err);
+        return null;
+    });
+};
+
 const getUserEvents = async (userId) => {
     return await UserEvents.find({userId: userId}).then().catch(err => {
         return null;
@@ -48,5 +55,6 @@ module.exports = {
     getAllUsers,
     getUserById,
     getUserEvents,
-    addUserEvent
+    addUserEvent,
+    getUserByEmail
 }

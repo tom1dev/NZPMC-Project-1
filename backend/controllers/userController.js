@@ -57,6 +57,14 @@ const createUser = async (request, response) => {
     const user = request.body;
 
     try {
+
+        const getUserByEmail = await userService.getUserByEmail(user.email);
+
+        if(getUserByEmail && getUserByEmail.length > 0){
+            response.status(400).send("User with this email already exists");
+            return
+        }
+        
         const accessToken = await userService.createUser(user);
 
         console.log(accessToken);
