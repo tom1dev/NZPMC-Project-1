@@ -4,14 +4,36 @@ import CreateEvent from '../components/CreateEvent';
 import EventDisplay from '../components/EventDisplay'
 import SideBar from '../components/SideBar';
 import UserDisplay from '../components/UserDisplay';
+import { useNavigate } from "react-router-dom";
 
-
+import userService from '../services/userService';
 const Admin = () => {
-    useEffect(() => {
-        // Check the pathname or other properties to change the body color
-        
-            document.body.style.backgroundColor = '#ffffff'; // Light color for home page
-    }, []);
+
+
+    const navigate = useNavigate();
+    
+    const [user, setUser] = useState();
+        useEffect(() => {
+            // Check the pathname or other properties to change the body color
+            const fetchUserInformation = async () => {
+                try{
+                    const user = await userService.getUserByToken();
+                    setUser(user[0]);
+
+                    // if(user.email !== "admin"){
+                    //     navigate("/");
+                    // }
+
+                }catch (error){
+                    console.log(error);
+                }
+            }
+            
+            fetchUserInformation();
+
+           
+
+        }, []);
     
     
     
@@ -19,7 +41,7 @@ const Admin = () => {
     return(
         <div className={styles.landingPageContainer}>
             <div className={styles.sidebarContainer}>
-                <SideBar/>
+                <SideBar user = {user} setUser ={setUser}/>
             </div>
             <div className={styles.landingContentContainer}>
                 <CreateEvent/>

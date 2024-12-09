@@ -4,10 +4,9 @@ body {
 }
 
 .landingPageContainer{
-    background-color: white;
+    background-color: #00658C;
     position: absolute;
     width: 100%;
-    height: 100%;
     top: 0;
     left: 0;
     display: inline-flex;
@@ -37,12 +36,14 @@ body {
 
 .eventsContainer{
     margin-top: 2vh;
+    position: relative;
+    height: auto;
     display: flex;
+    min-height: 50vh;
     flex-direction: column;
     align-items: center;
     padding: 2vh;
     border-radius: 20px;   
-    height: inherit;
     background-color: #ffffff;
     border:#7f7f7f  solid  3px;
 }

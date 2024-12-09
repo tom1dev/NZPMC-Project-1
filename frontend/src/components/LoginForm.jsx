@@ -14,11 +14,11 @@ const LoginForm = ({title,isSignup,setIsSignup}) => {
 
 
     useEffect(() => {
-        //const token = document.cookie.split("=")[1];
-        // if(token){
-        //     navigate("/");
-        // }
-        document.body.style.backgroundColor = '#00658C'; // Light color for home page
+        const token = document.cookie.split("=")[1];
+        if(token){
+            navigate("/");
+        }
+        document.body.style.backgroundColor = '#00658C';
     }, []);
 
     const handleEmailChange = (event) =>{
