@@ -1,6 +1,7 @@
 import styles from '../styles/SideBar.module.css'
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import cookieService from '../services/cookieService';
 
 
 const SideBar = ({user}) => {
@@ -16,7 +17,13 @@ const SideBar = ({user}) => {
         }
     }, [user]); 
 
+    const handelSignout = () => {
+        console.log("Signout Clicked");
+        cookieService.deleteCookie('token');
+        window.location.reload();
 
+
+    }
 
 
     return (
@@ -33,7 +40,7 @@ const SideBar = ({user}) => {
                         <p>{user.email}</p>
                     </div>
 
-                    <button className={styles.signIn}>Signout</button>
+                    <button className={styles.signIn} onClick={(e) => {handelSignout()}}>Signout</button>
                 </div>
                 :<Link className={styles.signIn} to='signin'>Sign in</Link>
                 
