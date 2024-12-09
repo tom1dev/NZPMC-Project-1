@@ -3,6 +3,13 @@ const userService = require('../services/userService');
 
 const getAllUsers = async (request, response) => {
     try {
+        const signedInEmail = request.auth.email;
+    
+        if(signedInEmail !== "admin"){
+            response.status(401).json({message: 'Unauthorized'})
+            return
+        }
+        
         const users = await userService.getAllUsers();
         console.log(users);
         if(!users || users.length < 0){
@@ -18,17 +25,26 @@ const getAllUsers = async (request, response) => {
     }
 }
 
+
 const getUserById = async (request, response) => {
    
 
     try {
+        const signedInEmail = request.auth.email;
+
         const userId = request.params.id;
 
         const user = await userService.getUserById(userId);
+
+
         if(user==null || user==undefined || user.length< 1){
             response.status(404).send("User not found");
-        }else{
+        }else if(signedInEmail === "admin" || signedInEmail.match(user[0].email)){
             response.status(200).json(user);
+            return
+        }else{
+            response.status(401).json({message: 'Unauthorized'})
+            return
         }
 
     } catch (error) {
@@ -59,11 +75,25 @@ const createUser = async (request, response) => {
 
 const getUserEvents = async (request, response) => {
     try {
+        const signedInEmail = request.auth.email;
+
+
         const userId = request.params.id;
+
+        const user = await userService.getUserById(userId);
+
+        if(signedInEmail !== "admin" && !signedInEmail.match(user[0].email)){
+            response.status(401).json({message: 'Unauthorized'})
+            return
+        }
+
+
+
         const events = await userService.getUserEvents(userId);
         if(events && events.length > 0){
             response.status(200).json(events);
-        }else{
+        }
+        else{
             response.status(404).send("No events found for this user");
         }
     } catch (error) {
@@ -74,7 +104,17 @@ const getUserEvents = async (request, response) => {
 
 const addUserEvent = async (request, response) => {
     try {
+        const signedInEmail = request.auth.email;
+
         const userId = request.params.id;
+
+        const user = await userService.getUserById(userId);
+
+        if(signedInEmail !== "admin" && !signedInEmail.match(user[0].email)){
+            response.status(401).json({message: 'Unauthorized'})
+            return
+        }
+
         const eventId = request.body.eventId;
         const userEvents = await userService.addUserEvent(userId, eventId);
         if(userEvents){

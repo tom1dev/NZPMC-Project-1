@@ -1,7 +1,5 @@
 const eventService = require('../services/eventService')
 
-
-
 const getAllEvents = async (request, response) => {
     try{
         const result = await eventService.getEvents()
@@ -38,6 +36,13 @@ const getEventById = async (request, response) => {
 }
 
 const createEvent = async (request, response) =>{
+    const signedInEmail = request.auth.email
+    
+    if(signedInEmail !== "admin"){
+        response.status(401).json({message: 'Unauthorized'})
+        return
+    }
+
     const eventData = request.body
 
     try{

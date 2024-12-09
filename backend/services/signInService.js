@@ -7,14 +7,15 @@ const hashPassword = (password) => {
     return createHash('sha256').update(password).digest('hex');
 }
 
-const signInService = async (email, password) => {
+const signIn= async (email, password) => {
     try{
         const passwordHash = await User.find({email: email}).catch(err => {return false;});
         
         if(!passwordHash && passwordHash.length === 0){
             return false;
         }
-
+        console.log(passwordHash)
+        console.log(hashPassword(password))
         if(passwordHash[0].passwordHash === hashPassword(password)){
             return generateToken(email);
         }
@@ -55,11 +56,11 @@ const authenticateToken = (req, res, next) => {
         return res.sendStatus(403)
       } 
       
-      req.user = decoded
+      req.auth = decoded
 
       next()
     })
   }
 
 
-module.exports = {signInService, hashPassword,generateToken,authenticateToken}
+module.exports = {signIn, hashPassword,generateToken,authenticateToken}

@@ -2,6 +2,7 @@ const express = require('express');
 const dbConnect = require('./config/mongoDB');
 const userRouter = require('./routers/userRouter');
 const eventRouter = require('./routers/eventRouter');
+const signInRouter = require('./routers/signInRouter');
 
 const app = express();
 app.use(express.json());
@@ -16,6 +17,7 @@ app.get('/', (request, response) => {
 //Routes
 app.use('/api/user', userRouter);
 app.use('/api/event', eventRouter);
+app.use('/api/signin', signInRouter);
 
 //specifies the port the app is going to run on
 const PORT = process.env.PORT || 5000;
