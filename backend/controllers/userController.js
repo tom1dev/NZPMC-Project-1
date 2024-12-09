@@ -146,7 +146,7 @@ const getUserEvents = async (request, response) => {
 
 
         const events = await userService.getUserEvents(userId);
-        if(events && events.length > 0){
+        if(events){
             response.status(200).json(events);
         }
         else{

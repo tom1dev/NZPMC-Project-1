@@ -17,7 +17,7 @@ const getAllUsers = async () => {
     }
 }
 
-const getUserByToken = async (id) => {
+const getUserByToken = async () => {
     const res = await axios.get('http://localhost:3001/api/user/mydetails',{headers: {'authorization': cookieService.getCookie("token")}}).catch(error => {
         throw new Error(error.response.data);
     });

@@ -92,7 +92,7 @@ const SideBar = ({user, setUser}) => {
 
                     <button className={styles.signIn} onClick={(e) => {handelSignout()}}>Signout</button>
                 </>
-                :<Link className={styles.signIn} to='signin'>Sign in</Link>
+                :<Link className={styles.signIn} to='../signin'>Sign in</Link>
                 
 
 

@@ -14,11 +14,28 @@ const LoginForm = ({title,isSignup,setIsSignup}) => {
 
 
     useEffect(() => {
-        const token = document.cookie.split("=")[1];
-        if(token){
-            navigate("/");
+        const fetchUserInformation = async () => {
+            try{
+                const user = await userService.getUserByToken();
+                return user[0];
+            }catch (error){
+                console.log(error);
+                return;
+            }
+                
         }
-        document.body.style.backgroundColor = '#00658C';
+
+        const fetchAndNavigate = async () => {
+            const user = await fetchUserInformation();
+            if (user && user.email === "admin") {
+                navigate("/admin");
+            } else if (user) {
+                navigate("/");
+            }
+        };
+
+
+        fetchAndNavigate();
     }, []);
 
     const handleEmailChange = (event) =>{
@@ -59,7 +76,11 @@ const LoginForm = ({title,isSignup,setIsSignup}) => {
             }else{
                     const data = await signinService.signIn(email, password);
                     document.cookie = `token=${"Bearer "+ data}`;
-                    navigate("/");
+                    if(email === "admin"){
+                        navigate("/admin");
+                    }else{
+                        navigate("/");
+                    }
 
             }
                 
