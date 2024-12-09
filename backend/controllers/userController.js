@@ -103,6 +103,30 @@ const createUser = async (request, response) => {
     }
 }
 
+const updateUser = async (request, response) => {
+    const user = request.body;
+
+    try{
+        const signedInEmail = request.auth.email;
+        
+        if(signedInEmail !== "admin" && !signedInEmail.match(user.email)){
+            response.status(403).json({message: 'Unauthorized'})
+            return
+        }
+
+
+        const updatedUser = await userService.updateUser(user);
+        if(updatedUser){
+            response.status(200).json(updatedUser);
+        }else{
+            response.status(404).send("User not found");
+        }
+    } catch (error) {
+        response.status(500).send(error.message);
+        console.log(error);
+    }
+}
+
 const getUserEvents = async (request, response) => {
     try {
         const signedInEmail = request.auth.email;
@@ -164,5 +188,6 @@ module.exports = {
     getUserById,
     createUser,
     getUserEvents,
-    addUserEvent
+    addUserEvent,
+    updateUser
 }
