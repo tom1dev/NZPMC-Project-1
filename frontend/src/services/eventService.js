@@ -1,4 +1,4 @@
-const axios = require('axios');
+import axios from 'axios';
 
 const getAllEvents = async () => {
     const res =  await axios.get('http://localhost:3001/events').headers({'authorization':document.cookie});

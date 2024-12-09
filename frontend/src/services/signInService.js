@@ -1,4 +1,4 @@
-const axios = require('axios');
+import axios from 'axios';
 
 const signIn = async (email, password) => {
     const res = await axios.post('http://localhost:3001/signin', {email, password}).catch(error => {
