@@ -1,6 +1,6 @@
 import styleSignin from '../styles/Signin.module.css';
 import {useState, useEffect} from 'react';
-import signIn from'../services/signinService';
+import signinService from '../services/signInService.js';
 import userService  from '../services/userService';
 import { useNavigate } from "react-router-dom";
 
@@ -57,9 +57,9 @@ const LoginForm = ({title,isSignup,setIsSignup}) => {
 
                 //handle submition logic with correct service
             }else{
-                    const data = await signIn(email, password);
-                    document.cookie = `token=${data.token}`;
-
+                    const data = await signinService.signIn(email, password);
+                    document.cookie = `token=${"Bearer "+ data}`;
+                    console.log(document.cookie);
                     navigate("/");
 
             }

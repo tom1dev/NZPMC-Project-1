@@ -14,4 +14,4 @@ const signIn = async (email, password) => {
 
 }
 
-export default signIn;
+export default {signIn};

@@ -18,8 +18,8 @@ const Landing = () => {
         // Check the pathname or other properties to change the body color
             const fetchUserInformation = async () => {
                 try{
-                    //const user = await userService.getUserByAuthToken();
-                    //setUser(user);
+                    const user = await userService.getUserByToken();
+                    setUser(user[0]);
                 }catch (error){
                     console.log(error);
                 }

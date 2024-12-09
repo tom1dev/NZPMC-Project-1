@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import cookieService from './cookieService';
 
 const getAllUsers = async () => {
     const res = await axios.get('http://localhost:3001/users',{headers: {'authorization': document.cookie}}).catch(error => {
@@ -15,9 +15,20 @@ const getAllUsers = async () => {
     }else{
         throw new Error(res.data.message);
     }
+}
 
-
-
+const getUserByToken = async (id) => {
+    const res = await axios.get('http://localhost:3001/api/user/mydetails',{headers: {'authorization': "Bearer " +cookieService.getCookie("token")}}).catch(error => {
+        throw new Error(error.response.data);
+    });
+    
+    if(res.status === 200){
+        return res.data;
+    } else if(res.status === 401){
+        throw new Error("Unauthorized cannot access this endpoint");
+    }else{
+        throw new Error(res.data.message);
+    }
 }
 
 const getUserById = async (id) => {
@@ -92,6 +103,7 @@ const addUserToEvent = async (userId, eventId) => {
 }
 
 export default {getAllUsers,
+    getUserByToken,
     getUserById,
     createUser,
     updateUser,
