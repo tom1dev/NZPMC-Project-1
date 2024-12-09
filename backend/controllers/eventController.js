@@ -22,6 +22,8 @@ const getEventById = async (request, response) => {
     try{
         const result = await eventService.getEventById(eventId)
 
+        console.log(result);
+
         if(result && result.length > 0){
             response.status(200).json(result);
         }else{

@@ -17,7 +17,7 @@ const getEventById = async (id) => {
     if(res.status === 200){
         return res.data;
     }else if(res.status === 404){
-        return null;
+        throw new Error(res.data.message);
     }  else{
         throw new Error(res.data.message);
     }
