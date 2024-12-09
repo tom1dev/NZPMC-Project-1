@@ -1,12 +1,12 @@
 import axios from 'axios';
 
 const signIn = async (email, password) => {
-    const res = await axios.post('http://localhost:3001/signin', {email, password}).catch(error => {
+    const res = await axios.post('http://localhost:3001/api/signin', {email, passwordHash: password}).catch(error => {
         throw new Error( error.response.data);
     });
 
     if(res.status === 200){
-        return res.data;
+        return await res.data;
     }else{
         throw new Error(res.data.message);
     }
@@ -14,4 +14,4 @@ const signIn = async (email, password) => {
 
 }
 
-export default signIn;
+export default {signIn};

@@ -1,14 +1,25 @@
 import styleSignin from '../styles/Signin.module.css';
-import {useState} from 'react';
-import signIn from'../services/signinService';
-import createUser from '../services/userService';
+import {useState, useEffect} from 'react';
+import signinService from '../services/signInService.js';
+import userService  from '../services/userService';
+import { useNavigate } from "react-router-dom";
 
 
 const LoginForm = ({title,isSignup,setIsSignup}) => {
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
     const [name,setName] = useState('');
+    const [error,setError] = useState(false);
+    const navigate = useNavigate();
 
+
+    useEffect(() => {
+        //const token = document.cookie.split("=")[1];
+        // if(token){
+        //     navigate("/");
+        // }
+        document.body.style.backgroundColor = '#00658C'; // Light color for home page
+    }, []);
 
     const handleEmailChange = (event) =>{
         setEmail(event.target.value)
@@ -30,7 +41,7 @@ const LoginForm = ({title,isSignup,setIsSignup}) => {
         setIsSignup(!isSignup);
 
     }
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         if (!email || !password || (isSignup && !name)) {
             alert("Please fill out all fields.");
@@ -38,19 +49,22 @@ const LoginForm = ({title,isSignup,setIsSignup}) => {
         }
         try{
             if(isSignup){
-                    const data = createUser({name,email,passwordHash: password,isAdmin:false});
-                    console.log(data);
-                    document.cookie = `token=${data.token}`;
+                    const user = {name,email,passwordHash: password,isAdmin:false};
+                    const data = await userService.createUser(user);
 
+                    document.cookie = `token=${"Bearer "+data}`;
+                    navigate("/");
 
                 //handle submition logic with correct service
             }else{
-                    const data = signIn(email, password);
-                    console.log(data);
-                    document.cookie = `token=${data.token}`;
+                    const data = await signinService.signIn(email, password);
+                    document.cookie = `token=${"Bearer "+ data}`;
+                    navigate("/");
+
             }
                 
         }catch(error){
+                setError(true);
                 console.log(error);
         }
 
@@ -61,6 +75,12 @@ const LoginForm = ({title,isSignup,setIsSignup}) => {
     return(
         <div className={styleSignin.background}>
             <h className={styleSignin.header}>{title}</h>
+            {  
+                
+                error && <h4 className={styleSignin.error}>{isSignup ? "Account couldn't be created": "Password or email incorrect"}</h4>
+                    
+               
+            }
             <form onSubmit={handleSubmit}>
                 
                 {isSignup && 

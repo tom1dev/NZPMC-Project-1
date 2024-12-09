@@ -11,7 +11,7 @@ const signIn= async (email, password) => {
     try{
         const passwordHash = await User.find({email: email}).catch(err => {return false;});
         
-        if(!passwordHash && passwordHash.length === 0){
+        if(!passwordHash || passwordHash.length < 1){
             return false;
         }
         console.log(passwordHash)
