@@ -34,6 +34,24 @@ const getEventById = async (request, response) => {
     }
 
 }
+const getUserAmountbyEventId = async (request, response) => {
+    const eventId = request.params.id
+
+    try{
+        const result = await eventService.getUserAmountbyEventId(eventId)
+
+        console.log(result)
+        if(result){
+            response.status(200).json(result);
+        }else{
+            response.status(404).json({message: 'No users found for event'})
+        }
+
+    }catch(error){
+        console.log(error)
+        response.status(500).json({message: error.message})
+    }
+}
 
 const createEvent = async (request, response) =>{
     const signedInEmail = request.auth.email
@@ -63,5 +81,6 @@ const createEvent = async (request, response) =>{
 module.exports = {
     getAllEvents,
     getEventById,
-    createEvent
+    createEvent,
+    getUserAmountbyEventId
 }

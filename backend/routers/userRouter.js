@@ -10,6 +10,7 @@ router.get('/:id', authenticateToken ,userController.getUserById);
 router.get('/:id/events',authenticateToken, userController.getUserEvents);
 router.post('/', userController.createUser);
 router.post('/:id/events',authenticateToken, userController.addUserEvent);
+router.patch('/:id',authenticateToken, userController.updateUser);
 
 
 

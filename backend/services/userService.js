@@ -42,6 +42,17 @@ const getUserEvents = async (userId) => {
     });
 };
 
+const updateUser = async (userData) => {
+    await User.findOneAndUpdate({ _id: userData.id }, {name: userData.name}).catch(err => {
+        console.log(err);
+        return null;
+      
+    });
+
+    return true;
+};
+
+
 const addUserEvent = async (userId, eventId) => {
     const userEvent = new UserEvents({userId: userId, eventId: eventId});
 
@@ -56,5 +67,6 @@ module.exports = {
     getUserById,
     getUserEvents,
     addUserEvent,
-    getUserByEmail
+    getUserByEmail,
+    updateUser
 }
