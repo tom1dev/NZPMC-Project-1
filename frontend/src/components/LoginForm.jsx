@@ -1,7 +1,7 @@
 import styleSignin from '../styles/Signin.module.css';
 import {useState, useEffect} from 'react';
 import signIn from'../services/signinService';
-import createUser from '../services/userService';
+import userService  from '../services/userService';
 import { useNavigate } from "react-router-dom";
 
 
@@ -21,7 +21,7 @@ const LoginForm = ({title,isSignup,setIsSignup}) => {
         document.body.style.backgroundColor = '#00658C'; // Light color for home page
     }, []);
 
-    const handleEmailChange = (event) =>{d
+    const handleEmailChange = (event) =>{
         setEmail(event.target.value)
     }
 
@@ -49,15 +49,15 @@ const LoginForm = ({title,isSignup,setIsSignup}) => {
         }
         try{
             if(isSignup){
-                    const data = createUser({name,email,passwordHash: password,isAdmin:false});
-                    console.log(data);
+                    const user = {name,email,passwordHash: password,isAdmin:false};
+                    const data = await userService.createUser(user);
+
                     document.cookie = `token=${data}`;
                     navigate("/");
 
                 //handle submition logic with correct service
             }else{
                     const data = await signIn(email, password);
-                    console.log(data);
                     document.cookie = `token=${data.token}`;
 
                     navigate("/");

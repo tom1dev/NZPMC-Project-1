@@ -37,11 +37,11 @@ const getUserById = async (id) => {
 }
 
 const createUser = async (user) => {
-    const res = await axios.post('http://localhost:3001/api/user',user).headers({'authorization':document.cookie}).catch(error => {
+    const res = await axios.post('http://localhost:3001/api/user',user,{headers: {'authorization': document.cookie}}).catch(error => {
         throw new Error(error.response.data);
     });
     
-    if(res.status === 200){
+    if(res.status === 201){
         return res.data;
     }  else if(res.status === 401){
         throw new Error("Unauthorized cannot access this endpoint");
@@ -91,12 +91,11 @@ const addUserToEvent = async (userId, eventId) => {
     }
 }
 
-export default {
-    getAllUsers,
+export default {getAllUsers,
     getUserById,
     createUser,
     updateUser,
     getEventsByUserId,
-    addUserToEvent
-}
+    addUserToEvent}
+
 
