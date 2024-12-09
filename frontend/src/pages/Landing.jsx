@@ -28,7 +28,7 @@ const Landing = () => {
             fetchUserInformation();
 
 
-            document.body.style.backgroundColor = '#ffffff'; // Light color for home page
+            document.body.style.backgroundColor = '#64B3C9'; // Light color for home page
     }, []);
     
     
