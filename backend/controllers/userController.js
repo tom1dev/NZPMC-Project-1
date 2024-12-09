@@ -53,6 +53,30 @@ const getUserById = async (request, response) => {
     }
 }
 
+const getUserByToken = async (request, response) => {
+
+    try {
+        const signedInEmail = request.auth.email;
+
+        const user = await userService.getUserByEmail(signedInEmail);
+
+
+        if(user==null || user==undefined || user.length< 1){
+            response.status(404).send("User not found");
+        }else{
+            response.status(200).json(user);
+            return
+        }
+
+    } catch (error) {
+        response.status(500).send(error.message);
+        console.log(error);
+    }
+
+
+}
+
+
 const createUser = async (request, response) => {
     const user = request.body;
 
@@ -135,6 +159,7 @@ const addUserEvent = async (request, response) => {
 }
 
 module.exports = {
+    getUserByToken,
     getAllUsers,
     getUserById,
     createUser,

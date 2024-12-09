@@ -5,6 +5,7 @@ const { authenticateToken } = require('../services/signInService');
 
 
 router.get('/',authenticateToken, userController.getAllUsers);
+router.get('/mydetails',authenticateToken, userController.getUserByToken);
 router.get('/:id', authenticateToken ,userController.getUserById);
 router.get('/:id/events',authenticateToken, userController.getUserEvents);
 router.post('/', userController.createUser);
