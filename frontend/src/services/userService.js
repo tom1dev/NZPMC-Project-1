@@ -21,7 +21,7 @@ const getAllUsers = async () => {
 }
 
 const getUserById = async (id) => {
-    const res = await axios.get('http://localhost:3001/users',id).headers({'authorization':document.cookie}).catch(error => {
+    const res = await axios.get('http://localhost:3001/api/user',id).headers({'authorization':document.cookie}).catch(error => {
         throw new Error(error.response.data);
     });
     
@@ -37,7 +37,7 @@ const getUserById = async (id) => {
 }
 
 const createUser = async (user) => {
-    const res = await axios.post('http://localhost:3001/users',user).headers({'authorization':document.cookie}).catch(error => {
+    const res = await axios.post('http://localhost:3001/api/user',user).headers({'authorization':document.cookie}).catch(error => {
         throw new Error(error.response.data);
     });
     
@@ -58,7 +58,7 @@ const updateUser = async (id, user) => {
 }
 
 const getEventsByUserId = async (id) => {
-    const res = await axios.get(`http://localhost:3001/users/${id}/events`).headers({'authorization':document.cookie}).catch(error => {
+    const res = await axios.get(`http://localhost:3001/api/user/${id}/events`).headers({'authorization':document.cookie}).catch(error => {
         throw new Error(error.response.data);
     });
     
@@ -74,7 +74,7 @@ const getEventsByUserId = async (id) => {
 }
 
 const addUserToEvent = async (userId, eventId) => {
-    const res = await axios.post(`http://localhost:3001/users/${userId}/events`, {eventId}).headers({'authorization':document.cookie}).catch(error => {
+    const res = await axios.post(`http://localhost:3001/api/user/${userId}/events`, {eventId}).headers({'authorization':document.cookie}).catch(error => {
         throw new Error(error.response.data);
     });
 

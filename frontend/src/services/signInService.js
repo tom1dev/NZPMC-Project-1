@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const signIn = async (email, password) => {
-    const res = await axios.post('http://localhost:3001/signin', {email, password}).catch(error => {
+    const res = await axios.post('http://localhost:3001/api/signin', {email, passwordHash: password}).catch(error => {
         throw new Error( error.response.data);
     });
 
