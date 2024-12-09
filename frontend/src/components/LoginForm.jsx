@@ -1,5 +1,8 @@
 import styleSignin from '../styles/Signin.module.css';
 import {useState} from 'react';
+import signIn from'../services/signinService';
+import createUser from '../services/userService';
+
 
 const LoginForm = ({title,isSignup,setIsSignup}) => {
     const [email,setEmail] = useState('');
@@ -33,11 +36,22 @@ const LoginForm = ({title,isSignup,setIsSignup}) => {
             alert("Please fill out all fields.");
             return;
         }
+        try{
+            if(isSignup){
+                    const data = createUser({name,email,passwordHash: password,isAdmin:false});
+                    console.log(data);
+                    document.cookie = `token=${data.token}`;
 
-        if(isSignup){
-            //handle submition logic with correct service
-        }else{
-            //handle submition logic with correct service
+
+                //handle submition logic with correct service
+            }else{
+                    const data = signIn(email, password);
+                    console.log(data);
+                    document.cookie = `token=${data.token}`;
+            }
+                
+        }catch(error){
+                console.log(error);
         }
 
 

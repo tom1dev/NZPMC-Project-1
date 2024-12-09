@@ -6,7 +6,7 @@ const getAllUsers = async (request, response) => {
         const signedInEmail = request.auth.email;
     
         if(signedInEmail !== "admin"){
-            response.status(401).json({message: 'Unauthorized'})
+            response.status(403).json({message: 'Unauthorized'})
             return
         }
         
@@ -43,7 +43,7 @@ const getUserById = async (request, response) => {
             response.status(200).json(user);
             return
         }else{
-            response.status(401).json({message: 'Unauthorized'})
+            response.status(403).json({message: 'Unauthorized'})
             return
         }
 
@@ -66,8 +66,6 @@ const createUser = async (request, response) => {
         }
         
         const accessToken = await userService.createUser(user);
-
-        console.log(accessToken);
         
         if(accessToken){
             response.status(201).json(accessToken);
@@ -91,7 +89,7 @@ const getUserEvents = async (request, response) => {
         const user = await userService.getUserById(userId);
 
         if(signedInEmail !== "admin" && !signedInEmail.match(user[0].email)){
-            response.status(401).json({message: 'Unauthorized'})
+            response.status(403).json({message: 'Unauthorized'})
             return
         }
 
@@ -119,7 +117,7 @@ const addUserEvent = async (request, response) => {
         const user = await userService.getUserById(userId);
 
         if(signedInEmail !== "admin" && !signedInEmail.match(user[0].email)){
-            response.status(401).json({message: 'Unauthorized'})
+            response.status(403).json({message: 'Unauthorized'})
             return
         }
 
