@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const userController = require('../controllers/eventController');
+const eventController = require('../controllers/eventController');
 const { authenticateToken } = require('../services/signInService');
 
-router.get('/', userController.getAllEvents);
-router.get('/:id', userController.getEventById);
-router.post('/', authenticateToken, userController.createEvent);
+router.get('/', eventController.getAllEvents);
+router.get('/:id', eventController.getEventById);
+router.get('/:id/userAmount', eventController.getUserAmountbyEventId);
+router.post('/', authenticateToken, eventController.createEvent);
 
 
 module.exports = router;
