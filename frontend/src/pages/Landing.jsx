@@ -11,9 +11,6 @@ const Landing = () => {
     const [user, setUser] = useState();
 
 
-
-
-
     useEffect(() => {
         // Check the pathname or other properties to change the body color
             const fetchUserInformation = async () => {
@@ -37,7 +34,7 @@ const Landing = () => {
     return(
         <div className={styles.landingPageContainer}>
             <div className={styles.sidebarContainer}>
-                <SideBar user = {user}/>
+                <SideBar user = {user} setUser ={setUser}/>
             </div>
             <div className={styles.landingContentContainer}>
                 {!user && <LoggedOutNotification/>}

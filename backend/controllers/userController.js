@@ -105,6 +105,7 @@ const createUser = async (request, response) => {
 
 const updateUser = async (request, response) => {
     const user = request.body;
+    const userId = request.params.id;
 
     try{
         const signedInEmail = request.auth.email;
@@ -115,8 +116,9 @@ const updateUser = async (request, response) => {
         }
 
 
-        const updatedUser = await userService.updateUser(user);
+        const updatedUser = await userService.updateUser(userId,user);
         if(updatedUser){
+            console.log(updatedUser);
             response.status(200).json(updatedUser);
         }else{
             response.status(404).send("User not found");

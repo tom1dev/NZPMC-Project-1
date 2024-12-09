@@ -2,9 +2,9 @@ import styles from '../styles/SideBar.module.css'
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import cookieService from '../services/cookieService';
+import userService from '../services/userService';
 
-
-const SideBar = ({user}) => {
+const SideBar = ({user, setUser}) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [editUserdetails, setEditUserDetails] = useState(false);
     const [userEdittedName, setUserEdittedName] = useState("");
@@ -40,9 +40,16 @@ const SideBar = ({user}) => {
         setEditUserDetails(!editUserdetails);
     }
 
-    const handleSave = () => { 
+    const handleSave  = async() => { 
         console.log("Save Clicked");
-
+            
+        try {
+            const res = await userService.updateUser(user.id, {name: userEdittedName});
+            setUser(user => ({...user, name: userEdittedName}));
+            console.log('User updated:', res);
+        } catch (error) {
+            console.log('Error updating user:', error);
+        }
 
         setEditUserDetails(!editUserdetails);
     }

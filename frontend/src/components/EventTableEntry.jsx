@@ -7,13 +7,14 @@ import EventDetailsPopup from '../components/EventDetailsPopup';
 const EventTableEntry = ({event,user,enrolled}) => {
     const [enrolledUser,setEnrolledUser] = useState(false);
     const [popupOpen, setPopupOpen] = useState(false);
+    
 
 
     useEffect(() => {
-
         setEnrolledUser(enrolled);
-    }
-    ,[enrolled]);
+    },[enrolled]);
+
+
 
 
     const addUserToEvent = async (userId, eventId) => {

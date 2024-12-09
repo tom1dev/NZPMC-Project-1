@@ -64,7 +64,19 @@ const createUser = async (user) => {
 }
 
 const updateUser = async (id, user) => {
-
+    const res = await axios.patch(`http://localhost:3001/api/user/${id}`,user,{headers: {'authorization': cookieService.getCookie("token")}}).catch(error => {
+        throw new Error(error.response.data);
+    });
+    
+    if(res.status === 200){
+        return res.data;
+    }  else if(res.status === 401){
+        throw new Error("Unauthorized cannot access this endpoint");
+    }  else if(res.status === 403){
+        throw new Error(`User not authorized to update user: ${id} `);
+    }else{
+        throw new Error(res.data.message);
+    }
 
 }
 

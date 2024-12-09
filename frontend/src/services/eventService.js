@@ -21,9 +21,18 @@ const getEventById = async (id) => {
         throw new Error(res.data.message);
     }
 
+}
 
+const getEventUserAmount = async (id) => {
+    const res = await axios.get(`http://localhost:3001/api/event/${id}/userAmount`,{headers: {'authorization': document.cookie}});
+    if(res.status === 200){
+        return res.data;
+    }else {
+        throw new Error(res.data.message);
+    }
 
 }
+
 
 const createEvent = async (event) => {
     const res =  await axios.post('http://localhost:3001/api/event', event,{headers: {'authorization': document.cookie}});
@@ -43,5 +52,6 @@ const createEvent = async (event) => {
 export default {
     getAllEvents,
     getEventById,
-    createEvent
+    createEvent,
+    getEventUserAmount
 }
