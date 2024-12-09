@@ -6,7 +6,7 @@ const signIn = async (email, password) => {
     });
 
     if(res.status === 200){
-        return res.data;
+        return await res.data;
     }else{
         throw new Error(res.data.message);
     }

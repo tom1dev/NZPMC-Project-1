@@ -111,3 +111,10 @@ body {
     background-color: #00658C;
     height: 100vh;
 }
+
+.error{
+    color: red;
+    font-size: 16px;
+    margin-top: 1vh;
+    align-self: left;
+}

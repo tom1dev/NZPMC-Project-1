@@ -2,13 +2,15 @@ import styleSignin from '../styles/Signin.module.css';
 import {useState} from 'react';
 import signIn from'../services/signinService';
 import createUser from '../services/userService';
+import { useNavigate } from "react-router-dom";
 
 
 const LoginForm = ({title,isSignup,setIsSignup}) => {
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
     const [name,setName] = useState('');
-
+    const [error,setError] = useState(false);
+    const navigate = useNavigate();
 
     const handleEmailChange = (event) =>{
         setEmail(event.target.value)
@@ -30,7 +32,7 @@ const LoginForm = ({title,isSignup,setIsSignup}) => {
         setIsSignup(!isSignup);
 
     }
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         if (!email || !password || (isSignup && !name)) {
             alert("Please fill out all fields.");
@@ -40,17 +42,21 @@ const LoginForm = ({title,isSignup,setIsSignup}) => {
             if(isSignup){
                     const data = createUser({name,email,passwordHash: password,isAdmin:false});
                     console.log(data);
-                    document.cookie = `token=${data.token}`;
-
+                    document.cookie = `token=${data}`;
+                    navigate("/");
 
                 //handle submition logic with correct service
             }else{
-                    const data = signIn(email, password);
+                    const data = await signIn(email, password);
                     console.log(data);
                     document.cookie = `token=${data.token}`;
+
+                    navigate("/");
+
             }
                 
         }catch(error){
+                setError(true);
                 console.log(error);
         }
 
@@ -61,6 +67,12 @@ const LoginForm = ({title,isSignup,setIsSignup}) => {
     return(
         <div className={styleSignin.background}>
             <h className={styleSignin.header}>{title}</h>
+            {  
+                
+                error && <h4 className={styleSignin.error}>{isSignup ? "Account couldn't be created": "Password or email incorrect"}</h4>
+                    
+               
+            }
             <form onSubmit={handleSubmit}>
                 
                 {isSignup && 
