@@ -4,11 +4,30 @@ import LoggedOutNotification from '../components/loggedOutNotification'
 import EventDisplay from '../components/EventDisplay'
 import SideBar from '../components/SideBar';
 
+import userService from '../services/userService';
+
 
 const Landing = () => {
+    const [user, setUser] = useState();
+
+
+
+
+
     useEffect(() => {
         // Check the pathname or other properties to change the body color
-        
+            const fetchUserInformation = async () => {
+                try{
+                    //const user = await userService.getUserByAuthToken();
+                    //setUser(user);
+                }catch (error){
+                    console.log(error);
+                }
+            }
+            
+            fetchUserInformation();
+
+
             document.body.style.backgroundColor = '#ffffff'; // Light color for home page
     }, []);
     
@@ -18,10 +37,10 @@ const Landing = () => {
     return(
         <div className={styles.landingPageContainer}>
             <div className={styles.sidebarContainer}>
-                <SideBar/>
+                <SideBar user = {user}/>
             </div>
             <div className={styles.landingContentContainer}>
-                <LoggedOutNotification/>
+                {!user && <LoggedOutNotification/>}
                 <EventDisplay/>
             </div>
         </div>

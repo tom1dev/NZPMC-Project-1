@@ -4,14 +4,14 @@ import { useEffect,useState } from 'react';
 import EventTableEntry from '../components/EventTableEntry'
 
 
-const EventDisplay = () =>{
-    const event = {
-        name: "Event 1",
-        attendees: 10,
-        description: "This is the first event",
-        location: "Location 1",
-        date: "2021-10-10"
-    }
+const EventDisplay = ({user}) =>{
+    const [events, setEvents] = useState([]);
+    const [userEvents, setUserEvents] = useState({});
+    const [userInfo, setUser] = useState(user);
+    
+    
+    useEffect(() => {
+    }, []);
 
     return(<>
 
@@ -26,9 +26,7 @@ const EventDisplay = () =>{
                 <h2 className={styles.eventTitleDate}>Date</h2>
             </div>
 
-            <EventTableEntry event = {event}/>
-            <EventTableEntry event = {event}/>
-            <EventTableEntry event = {event}/>
+            {events && events.length>0 &&  events.map((event) => {<EventTableEntry key={event.id} event = {event}/>})}
         </div>
     
     </>)
