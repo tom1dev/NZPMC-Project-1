@@ -41,7 +41,7 @@ const Landing = () => {
             </div>
             <div className={styles.landingContentContainer}>
                 {!user && <LoggedOutNotification/>}
-                <EventDisplay/>
+                <EventDisplay user = {user}/>
             </div>
         </div>
     )

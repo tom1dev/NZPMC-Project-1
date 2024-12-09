@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const getAllEvents = async () => {
-    const res =  await axios.get('http://localhost:3001/api/event').headers({'authorization':document.cookie});
+    const res =  await axios.get('http://localhost:3001/api/event',{headers: {'authorization': document.cookie}});
     if(res.status === 200){
         return res.data;
     }else if(res.status === 404){
