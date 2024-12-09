@@ -2,7 +2,7 @@ import axios from 'axios';
 import cookieService from './cookieService';
 
 const getAllUsers = async () => {
-    const res = await axios.get('http://localhost:3001/users',{headers: {'authorization': cookieService.getCookie("token")}}).catch(error => {
+    const res = await axios.get('http://localhost:3001/api/user/',{headers: {'authorization': cookieService.getCookie("token")}}).catch(error => {
         throw new Error(error.response.data);
     });
 

@@ -2,12 +2,24 @@
 import styles from '../styles/Landing.module.css'
 import { useEffect,useState } from 'react';
 import UserTableEntry from '../components/UserTableEntry'
+import userService from '../services/userService';
 
 
 const UserDisplay = () =>{
-    const user = {
-        name: "tom",
-        email: "tom@gmail.com"
+    const [users, setUsers] = useState([])
+
+    useEffect(() => {
+        fetchUsers();
+    },[]);
+
+
+    const fetchUsers = async () => {
+        try{
+            const users = await userService.getAllUsers();
+            setUsers(users);
+        }catch (error){
+            console.log(error);
+        }
     }
 
     return(<>
@@ -21,10 +33,7 @@ const UserDisplay = () =>{
                 <h2 className={styles.eventTitleName}>Name</h2>
                 <h2 className={styles.eventTitleLocation}>Email</h2>
             </div>
-
-            <UserTableEntry user = {user}/>
-            <UserTableEntry user = {user}/>
-            <UserTableEntry user = {user}/>
+            {users.map((user) => { return <UserTableEntry key={user.id} user = {user}/>})}
         </div>
     
     </>)

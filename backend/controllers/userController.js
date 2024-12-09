@@ -5,7 +5,7 @@ const getAllUsers = async (request, response) => {
     try {
         const signedInEmail = request.auth.email;
     
-        if(signedInEmail !== "admin"){
+        if(!signedInEmail.match("admin")){
             response.status(403).json({message: 'Unauthorized'})
             return
         }
@@ -116,7 +116,7 @@ const updateUser = async (request, response) => {
         }
 
 
-        const updatedUser = await userService.updateUser(userId,user);
+        const updatedUser = await userService.updateUser(userIduser);
         if(updatedUser){
             console.log(updatedUser);
             response.status(200).json(updatedUser);
