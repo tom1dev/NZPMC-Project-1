@@ -1,5 +1,5 @@
 import styleSignin from '../styles/Signin.module.css';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import signIn from'../services/signinService';
 import createUser from '../services/userService';
 import { useNavigate } from "react-router-dom";
@@ -12,7 +12,16 @@ const LoginForm = ({title,isSignup,setIsSignup}) => {
     const [error,setError] = useState(false);
     const navigate = useNavigate();
 
-    const handleEmailChange = (event) =>{
+
+    useEffect(() => {
+        //const token = document.cookie.split("=")[1];
+        // if(token){
+        //     navigate("/");
+        // }
+        document.body.style.backgroundColor = '#00658C'; // Light color for home page
+    }, []);
+
+    const handleEmailChange = (event) =>{d
         setEmail(event.target.value)
     }
 
