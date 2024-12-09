@@ -31,6 +31,8 @@ const createEvent = async (event) => {
         return res.data;
     }  else if(res.status === 403){
         throw new Error("Unauthorized cannot access this endpoint");
+    }  else if(res.status === 401){
+        throw new Error("User not authorized to create event");
     }else{
         throw new Error(res.data.message);
     }
