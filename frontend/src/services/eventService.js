@@ -1,7 +1,8 @@
 import axios from 'axios';
+import cookieService from './cookieService';
 
 const getAllEvents = async () => {
-    const res =  await axios.get('http://localhost:3001/api/event',{headers: {'authorization': document.cookie}});
+    const res =  await axios.get('http://localhost:3001/api/event',{headers: {'authorization': cookieService.getCookie("token")}});
     if(res.status === 200){
         return res.data;
     }else if(res.status === 404){
@@ -12,7 +13,7 @@ const getAllEvents = async () => {
 }
 
 const getEventById = async (id) => {
-    const res = await axios.get(`http://localhost:3001/api/event/${id}`,{headers: {'authorization': document.cookie}});
+    const res = await axios.get(`http://localhost:3001/api/event/${id}`,{headers: {'authorization': cookieService.getCookie("token")}});
     if(res.status === 200){
         return res.data;
     }else if(res.status === 404){
@@ -24,7 +25,7 @@ const getEventById = async (id) => {
 }
 
 const getEventUserAmount = async (id) => {
-    const res = await axios.get(`http://localhost:3001/api/event/${id}/userAmount`,{headers: {'authorization': document.cookie}});
+    const res = await axios.get(`http://localhost:3001/api/event/${id}/userAmount`,{headers: {'authorization': cookieService.getCookie("token")}});
     if(res.status === 200){
         return res.data;
     }else {
@@ -35,7 +36,7 @@ const getEventUserAmount = async (id) => {
 
 
 const createEvent = async (event) => {
-    const res =  await axios.post('http://localhost:3001/api/event', event,{headers: {'authorization': document.cookie}});
+    const res =  await axios.post('http://localhost:3001/api/event/', event,{headers: {'authorization': cookieService.getCookie("token")}});
     if(res.status === 201){
         return res.data;
     }  else if(res.status === 403){

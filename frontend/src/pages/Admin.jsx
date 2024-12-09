@@ -11,7 +11,7 @@ const Admin = () => {
 
 
     const navigate = useNavigate();
-    
+
     const [user, setUser] = useState();
         useEffect(() => {
             // Check the pathname or other properties to change the body color
@@ -44,9 +44,11 @@ const Admin = () => {
                 <SideBar user = {user} setUser ={setUser}/>
             </div>
             <div className={styles.landingContentContainer}>
+                
+                <UserDisplay/>
                 <CreateEvent/>
                 <EventDisplay/>
-                <UserDisplay/>
+                
             </div>
         </div>
     )
