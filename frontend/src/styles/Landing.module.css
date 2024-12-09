@@ -146,3 +146,17 @@ body {
 .signInLink:hover{
     color:#7f7f7f
 }
+.enrolledDiv{
+    width: 8%;
+    height: 3vh;
+    border-radius: 15px;
+    background-color: #9c9c9c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 0 0.5vh;
+    font-size: 16px;
+    font-weight: bold;
+    font-size: 16px;
+    align-self: center;
+}

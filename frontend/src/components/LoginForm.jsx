@@ -52,14 +52,13 @@ const LoginForm = ({title,isSignup,setIsSignup}) => {
                     const user = {name,email,passwordHash: password,isAdmin:false};
                     const data = await userService.createUser(user);
 
-                    document.cookie = `token=${data}`;
+                    document.cookie = `token=${"Bearer "+data}`;
                     navigate("/");
 
                 //handle submition logic with correct service
             }else{
                     const data = await signinService.signIn(email, password);
                     document.cookie = `token=${"Bearer "+ data}`;
-                    console.log(document.cookie);
                     navigate("/");
 
             }

@@ -2,7 +2,7 @@ import axios from 'axios';
 import cookieService from './cookieService';
 
 const getAllUsers = async () => {
-    const res = await axios.get('http://localhost:3001/users',{headers: {'authorization': document.cookie}}).catch(error => {
+    const res = await axios.get('http://localhost:3001/users',{headers: {'authorization': cookieService.getCookie("token")}}).catch(error => {
         throw new Error(error.response.data);
     });
 
@@ -18,7 +18,7 @@ const getAllUsers = async () => {
 }
 
 const getUserByToken = async (id) => {
-    const res = await axios.get('http://localhost:3001/api/user/mydetails',{headers: {'authorization': "Bearer " +cookieService.getCookie("token")}}).catch(error => {
+    const res = await axios.get('http://localhost:3001/api/user/mydetails',{headers: {'authorization': cookieService.getCookie("token")}}).catch(error => {
         throw new Error(error.response.data);
     });
     
@@ -32,7 +32,7 @@ const getUserByToken = async (id) => {
 }
 
 const getUserById = async (id) => {
-    const res = await axios.get('http://localhost:3001/api/user',id,{headers: {'authorization': document.cookie}}).catch(error => {
+    const res = await axios.get('http://localhost:3001/api/user',id,{headers: {'authorization': cookieService.getCookie("token")}}).catch(error => {
         throw new Error(error.response.data);
     });
     
@@ -48,7 +48,7 @@ const getUserById = async (id) => {
 }
 
 const createUser = async (user) => {
-    const res = await axios.post('http://localhost:3001/api/user',user,{headers: {'authorization': document.cookie}}).catch(error => {
+    const res = await axios.post('http://localhost:3001/api/user',user,{headers: {'authorization':cookieService.getCookie("token")}}).catch(error => {
         throw new Error(error.response.data);
     });
     
@@ -69,12 +69,12 @@ const updateUser = async (id, user) => {
 }
 
 const getEventsByUserId = async (id) => {
-    const res = await axios.get(`http://localhost:3001/api/user/${id}/events`,{headers: {'authorization': document.cookie}}).catch(error => {
+    const res = await axios.get(`http://localhost:3001/api/user/${id}/events`,{headers: {'authorization': cookieService.getCookie("token")}}).catch(error => {
         throw new Error(error.response.data);
     });
     
     if(res.status === 200){
-        return res.data;
+        return await res.data;
     }  else if(res.status === 401){
         throw new Error("Unauthorized cannot access this endpoint");
     }  else if(res.status === 403){
@@ -85,7 +85,7 @@ const getEventsByUserId = async (id) => {
 }
 
 const addUserToEvent = async (userId, eventId) => {
-    const res = await axios.post(`http://localhost:3001/api/user/${userId}/events`, {eventId},{headers: {'authorization': document.cookie}}).catch(error => {
+    const res = await axios.post(`http://localhost:3001/api/user/${userId}/events`, {eventId},{headers: {'authorization': cookieService.getCookie("token")}}).catch(error => {
         throw new Error(error.response.data);
     });
 

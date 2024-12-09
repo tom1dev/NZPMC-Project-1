@@ -9,19 +9,18 @@ import eventService from '../services/eventService';
 
 const EventDisplay = ({user}) =>{
     const [events, setEvents] = useState([]);
-    const [userEvents, setUserEvents] = useState({});
+    const [userEventIds, setUserEventsIds] = useState([]);
     
     const fetchUserEvents = async (userid) => {
         try{
             const userEvents = await userService.getEventsByUserId(userid);
-            setUserEvents(userEvents);
+            setUserEventsIds(userEvents.map((event) => event.eventId));
         }catch (error){
             console.log(error);
         }
-
-
-
     }
+
+
 
     const getAllEvents = async () => {
         try{
@@ -32,15 +31,25 @@ const EventDisplay = ({user}) =>{
         }
     }
 
+    const isUserEvent = (event) => {
+        for(let i = 0; i<userEventIds.length; i++){            
+
+            if(userEventIds[i] === event.id){
+                return true;
+            }
+        }
+
+        return false;
+    }
 
 
     useEffect(() => {
         getAllEvents();
 
-        if(user && user.id){
+        if(user){
             fetchUserEvents(user.id);
         }
-    }, []);
+    }, [user]);
 
     return(<>
 
@@ -56,8 +65,8 @@ const EventDisplay = ({user}) =>{
             </div>
 
             {events && events.length>0 &&  events.map((event) => {
-                return <EventTableEntry key={event.id} event = {event}/>
-                })}
+                return <EventTableEntry key={event.id} event = {event} user = {user} enrolled={isUserEvent(event)}/>
+            })}
         </div>
     
     </>)
