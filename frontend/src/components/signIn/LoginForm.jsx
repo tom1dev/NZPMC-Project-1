@@ -23,17 +23,21 @@ const LoginForm= ({ isSignup,setError})=> {
             return;
         }
         try {
+            //if the user is signing up, create a new user else sign in the user
             if (isSignup) {
                 const user = { name, email, passwordHash: password, isAdmin: false };
                 const data = await userService.createUser(user);
-
                 document.cookie = `token=${"Bearer " + data}`;
                 navigate("/");
 
-                //handle submition logic with correct service
+                
             } else {
                 const data = await signinService.signIn(email, password);
+
+                //logs the users auth token in the document cookie
                 document.cookie = `token=${"Bearer " + data}`;
+
+                //sends the user to the correct page
                 if (email === "admin") {
                     navigate("/admin");
                 } else {
@@ -51,6 +55,7 @@ const LoginForm= ({ isSignup,setError})=> {
     
     return <form onSubmit={handleSubmit}>
 
+        {/**if the user is signing up show the name parrameter */}
         {isSignup &&
             <div className={styleSignin.parrameterBox}>
                 <h2>Name</h2>
@@ -68,7 +73,7 @@ const LoginForm= ({ isSignup,setError})=> {
             <input value={password} onChange={event => handleParramChange(event,setPassword)} />
         </div>
 
-
+        {/**change the name of the button depending on signin or signup */}
         {isSignup ? <button type="submit">Sign Up</button> : <button type="submit">Login</button>}
 
 

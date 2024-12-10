@@ -17,6 +17,7 @@ const getAllUsers = async () => {
     }
 }
 
+//uses the auth token in cookies to get the user information
 const getUserByToken = async () => {
     const res = await axios.get('http://localhost:3001/api/user/mydetails',{headers: {'authorization': cookieService.getCookie("token")}}).catch(error => {
         throw new Error(error.response.data);
@@ -80,6 +81,8 @@ const updateUser = async (id, user) => {
 
 }
 
+
+//gets all the events that the user has joined
 const getEventsByUserId = async (id) => {
     const res = await axios.get(`http://localhost:3001/api/user/${id}/events`,{headers: {'authorization': cookieService.getCookie("token")}}).catch(error => {
         throw new Error(error.response.data);
@@ -96,6 +99,7 @@ const getEventsByUserId = async (id) => {
     }
 }
 
+//adds a user to an event
 const addUserToEvent = async (userId, eventId) => {
     const res = await axios.post(`http://localhost:3001/api/user/${userId}/events`, {eventId},{headers: {'authorization': cookieService.getCookie("token")}}).catch(error => {
         throw new Error(error.response.data);

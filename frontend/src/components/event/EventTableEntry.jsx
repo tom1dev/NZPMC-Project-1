@@ -17,8 +17,6 @@ const EventTableEntry = ({event,user,enrolled}) => {
     },[enrolled]);
 
 
-
-
     const addUserToEvent = async (userId, eventId) => {
         try{
             const res = await userService.addUserToEvent(userId, eventId);
@@ -28,6 +26,7 @@ const EventTableEntry = ({event,user,enrolled}) => {
         }
     }
 
+    //enrolls the user to the event
     const handleEnroll = (e) => {
         console.log("Enroll Clicked");
         if(user && user.id){
@@ -55,11 +54,16 @@ const EventTableEntry = ({event,user,enrolled}) => {
             <h2 className={styles.eventLocation}>{event.location}</h2>
             <h2 className={styles.eventDate}>{event.date}</h2>
             <button className={styles.eventViewButton} onClick={(e) => {togglePopup(e)}}>View</button>
+            {/**If the user is not logged in, show the create account button */}
             {user && user.length === 0 && <button className={styles.eventSignInButton} onClick={(e) =>{handleSignUp(e)}}>Create Account</button>}
+
+            {/**If the user is logged in and has not joined the event, show the join button */}
             {user && user.name && !enrolledUser && <button className={styles.eventViewButton} onClick={(e) =>{handleEnroll(e)}}>Join</button>}
+
+            {/**If the user is logged in and has joined the event, show the joined div */}
             {user && enrolledUser && <div className={styles.enrolledDiv}>Joined</div>}
 
-
+            {/** displays the popup for the current event**/}
             {popupOpen && <EventDetailsPopup togglePopup={togglePopup} event={event}/>}
         </div>
     );

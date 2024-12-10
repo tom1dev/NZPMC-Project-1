@@ -6,15 +6,13 @@ import SignIn from "./pages/Signin"
 
 function App() {
   return (
-  <BrowserRouter>
-        <Routes>
-          
-            <Route index element={<Landing />} />
-            <Route path="admin" element={<Admin />} />
-            <Route path="signin" element={<SignIn />} />
-  
-        </Routes>
-      </BrowserRouter>
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<Landing />} />
+        <Route path="admin" element={<Admin />} />
+        <Route path="signin" element={<SignIn />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

@@ -24,6 +24,7 @@ const getEventById = async (id) => {
 
 }
 
+//gets the amount of users that are attending the event
 const getEventUserAmount = async (id) => {
     const res = await axios.get(`http://localhost:3001/api/event/${id}/userAmount`,{headers: {'authorization': cookieService.getCookie("token")}});
     if(res.status === 200){

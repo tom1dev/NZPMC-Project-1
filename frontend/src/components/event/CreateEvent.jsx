@@ -16,6 +16,7 @@ const CreateEvent = () => {
     }
 
 
+    //submits the created event to the database
     const handleSubmit = async (event) => {
         event.preventDefault();
         if (!name || !date || !description) {
@@ -51,7 +52,7 @@ const CreateEvent = () => {
 
                 <div className={styleCreateEvent.parrameterBox}>
                     <h2 className={styleCreateEvent.parrameterTitle}>Date</h2>
-                    <input className={styleCreateEvent.parrameterInput} value={date} placeholder='dd/mm/yyyy'  onChange={(event) =>handleVariableChange(event,setDate)}/>
+                    <input className={styleCreateEvent.parrameterInput} value={date} placeholder='mm/dd/yyyy'  onChange={(event) =>handleVariableChange(event,setDate)}/>
                 </div>
                 <div className={styleCreateEvent.parrameterBox}>
                     <h2 className={styleCreateEvent.parrameterTitle}>Description</h2>

@@ -23,8 +23,10 @@ const SignInFormContainer = ({ title, isSignup, setIsSignup }) => {
             {/*shows error message if error occurred during signup*/}
             {error && <h4 className={styleSignin.error}>{isSignup ? "Account couldn't be created" : "Password or email incorrect"}</h4>}
             
+
             <LoginForm isSignup={isSignup} setError ={setError}/>
 
+            {/*shows the link to the other form(sign in or signup)*/}
             <SigninFormLink isSignup={isSignup} onSignupClicked = {onSignupClicked} />   
         </div>
     )

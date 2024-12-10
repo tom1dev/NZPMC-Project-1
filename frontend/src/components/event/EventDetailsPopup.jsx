@@ -5,6 +5,7 @@ import eventService from '../../services/eventService.js';
 const EventDetailsPopup = ({togglePopup, event}) => {
     const [eventUserAmount, setEventUserAmount] = useState(0);
 
+    //gets the amount of users that have joined the event apon loading
     useEffect(() => {
         const fetchEventUserAmount = async () => {
             try {

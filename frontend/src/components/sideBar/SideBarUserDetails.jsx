@@ -10,6 +10,7 @@ const SideBarUserDetails = ({user, setUser}) =>{
     const [editUserdetails, setEditUserDetails] = useState(false);
     const [userEdittedName, setUserEdittedName] = useState(user.name);
 
+    //update the user's name in the input field
     useEffect(() => {
         setUserEdittedName(user.name);
     }, [user]);
@@ -17,7 +18,6 @@ const SideBarUserDetails = ({user, setUser}) =>{
     //save the users new name to the database
     const handleSave  = async() => { 
         console.log("Save Clicked");
-            
         try {
             const res = await userService.updateUser(user.id, {name: userEdittedName});
             setUser(user => ({...user, name: userEdittedName}));
