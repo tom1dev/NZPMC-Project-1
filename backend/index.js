@@ -11,7 +11,12 @@ const app = express();
 
 app.use(express.static('dist'))
 app.use(express.json());
-app.use(cors());
+app.use(cors(
+  {
+    origin: 'https://nzpmc-project-1.onrender.com/',
+    allowedHeaders: ['Content-Type', 'authorization']
+  }
+));
 
 //connect to database
 dbConnect();
