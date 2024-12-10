@@ -13,7 +13,8 @@ const SideBar = ({user, setUser}) => {
 
     //updates sidebar elements depending on user login status
     useEffect(() => {
-        if (!user || user.length < 1) {
+        console.log();
+        if (!user ||!user.name || user.length < 1) {
             setIsLoggedIn(false); 
         } else {
             setIsLoggedIn(true); 
