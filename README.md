@@ -4,6 +4,7 @@ This is the first miniproject created by tdev429(tom).
 
 ### Demo
 The live demo can be found at https://nzpmc-project-1.onrender.com/ 
+The admin account can be accessed via email: admin, password: admin
 
 ## About the project:
 ### Project Stack:
