@@ -1,5 +1,5 @@
 import styles from '../styles/Landing.module.css'
-import { useEffect,useState } from 'react';
+import { useEffect, useState } from 'react';
 import LoggedOutNotification from '../components/loggedOutNotification'
 import EventDisplay from '../components/EventDisplay'
 import SideBar from '../components/SideBar';
@@ -11,36 +11,39 @@ const Landing = () => {
     const [user, setUser] = useState([]);
 
 
+    //gets user information with its auth cookie
     useEffect(() => {
-        // Check the pathname or other properties to change the body color
-            const fetchUserInformation = async () => {
-                try{
-                    const user = await userService.getUserByToken();
-                    setUser(user[0]);
-                }catch (error){
-                    console.log(error);
-                }
+        const fetchUserInformation = async () => {
+            try {
+                const user = await userService.getUserByToken();
+                setUser(user[0]);
+            } catch (error) {
+                console.log(error);
             }
-            
-            fetchUserInformation();
+        }
+
+        fetchUserInformation();
 
     }, []);
-    
-    
-    
-    
-    return(
+
+
+
+
+    return (
         <div className={styles.landingPageContainer}>
             <div className={styles.sidebarContainer}>
-                <SideBar user = {user} setUser ={setUser}/>
+                <SideBar user={user} setUser={setUser} />
             </div>
             <div className={styles.landingContentContainer}>
                 <h1 className={styles.landingPageTitle}>Event signup</h1>
-                {!user && <LoggedOutNotification/>}
-                <EventDisplay user = {user}/>
+                
+                {/*if user is not logged in, display a notification*/}
+                {!user && <LoggedOutNotification />}
+                
+                <EventDisplay user={user} />
             </div>
         </div>
     )
-}; 
+};
 
 export default Landing;
