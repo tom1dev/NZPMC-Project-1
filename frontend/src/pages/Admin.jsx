@@ -1,5 +1,5 @@
 import styles from '../styles/Landing.module.css'
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useReducer } from 'react';
 import CreateEvent from '../components/event/CreateEvent.jsx';
 import EventDisplay from '../components/event/EventDisplay.jsx'
 import SideBar from '../components/sideBar/SideBar.jsx';
@@ -10,8 +10,9 @@ import userService from '../services/userService';
 const Admin = () => {
     //allows for navigation to other pages
     const navigate = useNavigate();
-
+    const [, forceUpdate] = useReducer(x => x + 1, 0);
     const [user, setUser] = useState();
+    const [key, setkey] = useState(0);
     
 
     //gets user information with its auth cookie and verifies user page access
@@ -46,7 +47,7 @@ const Admin = () => {
             <div className={styles.landingContentContainer}>
                 <h1 className={styles.landingPageTitle}>Admin Page</h1>
                 <UserDisplay />
-                <CreateEvent />
+                <CreateEvent  forceUpdate={forceUpdate}/>
                 <EventDisplay />
 
             </div>

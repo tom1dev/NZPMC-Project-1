@@ -3,14 +3,13 @@ import styleCreateEvent from '../../styles/CreateEvent.module.css';
 import { useEffect,useState } from 'react';
 import eventService from '../../services/eventService.js';
 
-
-const CreateEvent = () => {
+const CreateEvent = ({forceUpdate}) => {
     const [name,setName] = useState('');
     const [location,setLocation] = useState('');
     const [date,setDate] = useState('');
     const [description,setDescription] = useState('');
 
-    
+
     const handleVariableChange = (event, setter) =>{
         setter(event.target.value)
     }
@@ -26,7 +25,7 @@ const CreateEvent = () => {
 
         try{
             await eventService.createEvent({name:name,location: location,date: date,description: description});
-            window.location.reload();
+            forceUpdate();
         }catch (error){
             console.log(error);
         }
