@@ -8,7 +8,7 @@ import userService from '../services/userService';
 
 
 const Landing = () => {
-    const [user, setUser] = useState();
+    const [user, setUser] = useState([]);
 
 
     useEffect(() => {
@@ -35,6 +35,7 @@ const Landing = () => {
                 <SideBar user = {user} setUser ={setUser}/>
             </div>
             <div className={styles.landingContentContainer}>
+                <h1 className={styles.landingPageTitle}>Event signup</h1>
                 {!user && <LoggedOutNotification/>}
                 <EventDisplay user = {user}/>
             </div>

@@ -18,13 +18,14 @@ const Admin = () => {
             const fetchUserInformation = async () => {
                 try{
                     const user = await userService.getUserByToken();
+                    if(!user || user.length<1|| user[0].email !== "admin"){
+                        navigate("/");
+                    }
+
                     setUser(user[0]);
 
-                    // if(user.email !== "admin"){
-                    //     navigate("/");
-                    // }
-
                 }catch (error){
+                    navigate("/");
                     console.log(error);
                 }
             }
@@ -44,7 +45,7 @@ const Admin = () => {
                 <SideBar user = {user} setUser ={setUser}/>
             </div>
             <div className={styles.landingContentContainer}>
-                
+                <h1 className={styles.landingPageTitle}>Admin Page</h1>
                 <UserDisplay/>
                 <CreateEvent/>
                 <EventDisplay/>

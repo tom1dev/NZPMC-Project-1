@@ -3,7 +3,7 @@ import styleSignin from '../styles/Signin.module.css';
 import { Outlet, Link } from "react-router-dom";
 import LoginForm from '../components/loginForm';
 
-const SignIn = () => {
+const SignIn = ({}) => {
     const [isSignup,setIsSignup] = useState(false);
     return(
         <div className={styleSignin.SigninContainer}>  

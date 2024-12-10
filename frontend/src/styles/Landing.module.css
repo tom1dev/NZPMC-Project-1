@@ -7,9 +7,17 @@ body {
     background-color: #00658C;
     position: absolute;
     width: 100%;
+    
     top: 0;
     left: 0;
     display: inline-flex;
+}
+
+.landingPageTitle{
+    color: white;
+    font-size: 48px;
+    margin: 0 auto;
+    padding: 0vh;
 }
 
 .sidebarContainer{
@@ -19,7 +27,7 @@ body {
 
 .landingContentContainer{
     width: 85%;
-    padding: 10vh;
+    padding: 2.5vh 10vw;
 }
 
 
@@ -58,14 +66,19 @@ body {
     background-color: #3799BF;
 }
 
+
 .eventTableListingBox{
     display: flex;
     flex-wrap: wrap;
     padding: 1vh 1vh 1vh 2vh;
-    margin: 0.5vh auto;
+    align-self: center;
+    margin: 0.5vh 0vw;
+   
     border-radius: 20px;
+    
     width: 96%;   
     height: inherit;
+
     background-color: #ffffff;
     border:#7f7f7f  solid  2px;
     
@@ -92,7 +105,7 @@ body {
 .eventDate{
     color:#000000;
     margin-right: 0;
-    width: 20%;
+    width: 13%;
     text-align: left;
     overflow: auto;
     font-size: 16px;
@@ -136,8 +149,20 @@ body {
     text-align: center;
     
     margin: 0 0 0 0.5vh;
-    font-size: 16px;
+    font-size: 15px;
 }
+
+.eventSignInButton{
+    width: fit-content;
+    position: relative;
+    height: inherit;
+    padding: 0.5vh 0.5vw;
+    text-align: center;
+    margin: 0 0 0 0.5vh;
+    font-size: 15px;
+}
+
+
 .eventTitle{
     padding: 0;
     color: Black;

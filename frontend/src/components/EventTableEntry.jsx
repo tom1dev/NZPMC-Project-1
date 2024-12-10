@@ -2,12 +2,14 @@ import styles from '../styles/Landing.module.css'
 import {useState,useEffect} from 'react';
 import userService from '../services/userService';
 import EventDetailsPopup from '../components/EventDetailsPopup';
+import { useNavigate } from 'react-router-dom';
 
 
 const EventTableEntry = ({event,user,enrolled}) => {
     const [enrolledUser,setEnrolledUser] = useState(false);
     const [popupOpen, setPopupOpen] = useState(false);
     
+    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -41,6 +43,10 @@ const EventTableEntry = ({event,user,enrolled}) => {
         setPopupOpen(!popupOpen);
     }
 
+    const handleSignUp = (e) => {
+        navigate('/signin');
+    }
+
 
     return (
         
@@ -49,8 +55,9 @@ const EventTableEntry = ({event,user,enrolled}) => {
             <h2 className={styles.eventLocation}>{event.location}</h2>
             <h2 className={styles.eventDate}>{event.date}</h2>
             <button className={styles.eventViewButton} onClick={(e) => {togglePopup(e)}}>View</button>
-            {user && !enrolledUser && <button className={styles.eventViewButton} onClick={(e) =>{handleEnroll(e)}}>Enroll</button>}
-            {user && enrolledUser && <div className={styles.enrolledDiv}>Enrolled</div>}
+            {user && user.length === 0 && <button className={styles.eventSignInButton} onClick={(e) =>{handleSignUp(e)}}>Create Account</button>}
+            {user && user.name && !enrolledUser && <button className={styles.eventViewButton} onClick={(e) =>{handleEnroll(e)}}>Join</button>}
+            {user && enrolledUser && <div className={styles.enrolledDiv}>Joined</div>}
 
 
             {popupOpen && <EventDetailsPopup togglePopup={togglePopup} event={event}/>}

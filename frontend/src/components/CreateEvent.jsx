@@ -18,8 +18,8 @@ const CreateEvent = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        if (!name || !location || !date || !description) {
-            alert("Please fill out all fields.");
+        if (!name || !date || !description) {
+            alert("Please fill out name,date and description.");
             return;
         }
 
@@ -29,9 +29,6 @@ const CreateEvent = () => {
         }catch (error){
             console.log(error);
         }
-        
-
-
 
     }
 
