@@ -2,13 +2,17 @@ const Event = require('../models/eventModel');
 const UserEvents = require('../models/usersEventsModel');
 
 const createEvent = async (eventData) => {
-    const newEvent = new Event({id: eventData.id, name: eventData.name, date: eventData.date, location: eventData.location, description: eventData.description});
 
-    newEvent.save().then().catch(err => {
+    var date = new Date(eventData.date);
+
+    const newEvent = new Event({name: eventData.name, date: date, location: eventData.location, description: eventData.description});
+
+    await newEvent.save().catch(err => {
+        console.log(err);
         return false;
     });
 
-    return await true;
+    return true;
 }
 
 const getEvents = async () => {

@@ -5,7 +5,7 @@ const getAllUsers = async (request, response) => {
     try {
         const signedInEmail = request.auth.email;
     
-        if(signedInEmail !== "admin"){
+        if(!signedInEmail.match("admin")){
             response.status(403).json({message: 'Unauthorized'})
             return
         }
@@ -105,6 +105,7 @@ const createUser = async (request, response) => {
 
 const updateUser = async (request, response) => {
     const user = request.body;
+    const userId = request.params.id;
 
     try{
         const signedInEmail = request.auth.email;
@@ -115,8 +116,10 @@ const updateUser = async (request, response) => {
         }
 
 
-        const updatedUser = await userService.updateUser(user);
+        const updatedUser = await userService.updateUser(userId,user);
+        
         if(updatedUser){
+            console.log(updatedUser);
             response.status(200).json(updatedUser);
         }else{
             response.status(404).send("User not found");
@@ -136,6 +139,8 @@ const getUserEvents = async (request, response) => {
 
         const user = await userService.getUserById(userId);
 
+        console.log(userId);
+
         if(signedInEmail !== "admin" && !signedInEmail.match(user[0].email)){
             response.status(403).json({message: 'Unauthorized'})
             return
@@ -144,7 +149,7 @@ const getUserEvents = async (request, response) => {
 
 
         const events = await userService.getUserEvents(userId);
-        if(events && events.length > 0){
+        if(events){
             response.status(200).json(events);
         }
         else{

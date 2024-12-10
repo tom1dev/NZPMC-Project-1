@@ -1,3 +1,5 @@
+
+//gets the users auth cookie by name
 const getCookie = ( name ) => {
     var nameLookup = name + "=";
     var cookies = document.cookie.split(';');
@@ -15,6 +17,7 @@ const getCookie = ( name ) => {
 
 }
 
+//deletes the users auth cookie by name
 const deleteCookie = (name) => {
     document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }

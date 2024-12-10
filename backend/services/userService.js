@@ -42,8 +42,8 @@ const getUserEvents = async (userId) => {
     });
 };
 
-const updateUser = async (userData) => {
-    await User.findOneAndUpdate({ _id: userData.id }, {name: userData.name}).catch(err => {
+const updateUser = async (userId,userData) => {
+    await User.findOneAndUpdate({ _id: userId }, {name: userData.name}).catch(err => {
         console.log(err);
         return null;
       

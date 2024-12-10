@@ -1,50 +1,49 @@
 import styles from '../styles/Landing.module.css'
-import { useEffect,useState } from 'react';
-import LoggedOutNotification from '../components/loggedOutNotification'
-import EventDisplay from '../components/EventDisplay'
-import SideBar from '../components/SideBar';
+import { useEffect, useState } from 'react';
+import LoggedOutNotification from '../components/signIn/loggedOutNotification.jsx'
+import EventDisplay from '../components/event/EventDisplay.jsx'
+import SideBar from '../components/sideBar/SideBar.jsx';
 
 import userService from '../services/userService';
 
 
 const Landing = () => {
-    const [user, setUser] = useState();
+    const [user, setUser] = useState({});
 
 
-
-
-
+    //gets user information with its auth cookie
     useEffect(() => {
-        // Check the pathname or other properties to change the body color
-            const fetchUserInformation = async () => {
-                try{
-                    const user = await userService.getUserByToken();
-                    setUser(user[0]);
-                }catch (error){
-                    console.log(error);
-                }
+        const fetchUserInformation = async () => {
+            try {
+                const user = await userService.getUserByToken();
+                setUser(user[0]);
+            } catch (error) {
+                console.log("Error fetching user information", error);
             }
-            
-            fetchUserInformation();
+        }
 
+        fetchUserInformation();
 
-            document.body.style.backgroundColor = '#64B3C9'; // Light color for home page
     }, []);
-    
-    
-    
-    
-    return(
+
+
+
+
+    return (
         <div className={styles.landingPageContainer}>
             <div className={styles.sidebarContainer}>
-                <SideBar user = {user}/>
+                <SideBar user={user} setUser={setUser} />
             </div>
             <div className={styles.landingContentContainer}>
-                {!user && <LoggedOutNotification/>}
-                <EventDisplay user = {user}/>
+                <h1 className={styles.landingPageTitle}>Event signup</h1>
+                
+                {/*if user is not logged in, display a notification*/}
+                {!user && <LoggedOutNotification />}
+                
+                <EventDisplay user={user} />
             </div>
         </div>
     )
-}; 
+};
 
 export default Landing;

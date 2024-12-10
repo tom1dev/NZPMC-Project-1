@@ -22,6 +22,8 @@ const getEventById = async (request, response) => {
     try{
         const result = await eventService.getEventById(eventId)
 
+        console.log(result);
+
         if(result && result.length > 0){
             response.status(200).json(result);
         }else{
@@ -56,14 +58,15 @@ const getUserAmountbyEventId = async (request, response) => {
 const createEvent = async (request, response) =>{
     const signedInEmail = request.auth.email
     
-    if(signedInEmail !== "admin"){
-        response.status(401).json({message: 'Unauthorized'})
-        return
-    }
+    // if(signedInEmail !== "admin"){
+    //     response.status(401).json({message: 'Unauthorized'})
+    //     return
+    // }
 
     const eventData = request.body
 
     try{
+
         const result = await eventService.createEvent(eventData)
 
         if(result){

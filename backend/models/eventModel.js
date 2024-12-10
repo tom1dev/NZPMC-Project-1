@@ -12,6 +12,7 @@ const eventSchema = new mongoose.Schema({
 eventSchema.set('toJSON', {
     transform: (document, returnedObject) => {
       returnedObject.id = returnedObject._id.toString()
+      returnedObject.date = new Date(returnedObject.date).toLocaleDateString()    
       delete returnedObject._id
       delete returnedObject.__v
     }
