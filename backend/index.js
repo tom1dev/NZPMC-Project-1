@@ -2,7 +2,6 @@ const express = require('express');
 const dbConnect = require('./config/mongoDB');
 const cors = require('cors')
 
-
 //initializes routes
 const userRouter = require('./routers/userRouter');
 const eventRouter = require('./routers/eventRouter');
@@ -10,6 +9,7 @@ const signInRouter = require('./routers/signInRouter');
 
 const app = express();
 
+app.use(express.static('dist'))
 app.use(express.json());
 app.use(cors());
 

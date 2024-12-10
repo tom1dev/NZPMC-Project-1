@@ -33,7 +33,7 @@ const getUserByToken = async () => {
 }
 
 const getUserById = async (id) => {
-    const res = await axios.get('http://localhost:3001/api/user',id,{headers: {'authorization': cookieService.getCookie("token")}}).catch(error => {
+    const res = await axios.get('/api/user',id,{headers: {'authorization': cookieService.getCookie("token")}}).catch(error => {
         throw new Error(error.response.data);
     });
     
@@ -49,7 +49,7 @@ const getUserById = async (id) => {
 }
 
 const createUser = async (user) => {
-    const res = await axios.post('http://localhost:3001/api/user',user,{headers: {'authorization':cookieService.getCookie("token")}}).catch(error => {
+    const res = await axios.post('/api/user',user,{headers: {'authorization':cookieService.getCookie("token")}}).catch(error => {
         throw new Error(error.response.data);
     });
     
@@ -65,7 +65,7 @@ const createUser = async (user) => {
 }
 
 const updateUser = async (id, user) => {
-    const res = await axios.patch(`http://localhost:3001/api/user/${id}`,user,{headers: {'authorization': cookieService.getCookie("token")}}).catch(error => {
+    const res = await axios.patch(`/api/user/${id}`,user,{headers: {'authorization': cookieService.getCookie("token")}}).catch(error => {
         throw new Error(error.response.data);
     });
     
@@ -84,7 +84,7 @@ const updateUser = async (id, user) => {
 
 //gets all the events that the user has joined
 const getEventsByUserId = async (id) => {
-    const res = await axios.get(`http://localhost:3001/api/user/${id}/events`,{headers: {'authorization': cookieService.getCookie("token")}}).catch(error => {
+    const res = await axios.get(`/api/user/${id}/events`,{headers: {'authorization': cookieService.getCookie("token")}}).catch(error => {
         throw new Error(error.response.data);
     });
     
@@ -101,7 +101,7 @@ const getEventsByUserId = async (id) => {
 
 //adds a user to an event
 const addUserToEvent = async (userId, eventId) => {
-    const res = await axios.post(`http://localhost:3001/api/user/${userId}/events`, {eventId},{headers: {'authorization': cookieService.getCookie("token")}}).catch(error => {
+    const res = await axios.post(`/api/user/${userId}/events`, {eventId},{headers: {'authorization': cookieService.getCookie("token")}}).catch(error => {
         throw new Error(error.response.data);
     });
 
