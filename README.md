@@ -7,37 +7,38 @@ This is the first miniproject created by tdev429(tom).
  * JavaScript
  * NodeJS
  * ExpressJS
- * mongoDB
+ * MongoDB
  * mongoose
 
 This project is a user event registration site where users can join events after signing in. Admins can also view all users and create events directly through the application.
 
 ### Key Design Decisions:
-This project contains many key design decisions which were integeral to the design past the initial project requirements and decisions:
+This project contains many key design decisions that were integral to the design past the initial project requirements and decisions:
 
-- SideBar: The sidebar is key for allowing the user to always be in controll about their log in status as well as their account details. By adding the sidebar now it will allow for easier routing between features of the page as the sites requirements grow.
+- Sidebar: The sidebar is key for allowing the user to always be in control of their login status and account details. Adding the sidebar now will allow for easier routing between page features as the site's requirements grow.
 
-- Security, Authentication, and Cookies: Security is a major concern when creating online applications and websites. As such I applied hashing before storing user passwords, as well as sending the user a jwt autherisation token after they sign in. This JWT token is used for autherisation of the user to use certain endpoints in the backend. For example a query with no jwt token (e.g. non signed in user) cannot access the get user info endpoint or a non-admin user cannot access create event endpoint. This JWT token is also used in the cookie to save user signin even if page is refreshed.
+- Security, Authentication, and Cookies: Security is a major concern when creating online applications and websites. As such, I applied hashing before storing user passwords, as well as sending the user a jwt authorisation token after they sign in. This JWT token is used to authorise the user to use certain endpoints in the backend. For example, a query with no JWT token (e.g. non, non-signed-in user) cannot access the get-user info endpoint, or a non-admin user cannot access the create-event endpoint. This JWT token is also used in the cookie to save user sign-in even if the page is refreshed.
 
-- Event and user detail popups: I have opted to use popups for showing user and event details. This has allowed me more flexibility in the amount of paramenters and they way i desplay parrameters for events and users. For example this has allowed me to add additional parrameters to the event display (amount of attendies and Location) without making the pages look chunky.
+- Event and user detail popups: I have opted to use popups for showing user and event details. This has allowed me more flexibility in the number of parameters and the way I display parameters for events and users. For example, this has allowed me to add additional parameters to the event display (number of attendees and location) without making the pages look chunky.
 
-- Signout: I have also opted to add a signout button as users may want to use different accounts. For example a admin may also want a regular user account.
+- Signout: I have also opted to add a signout button as users may want to use different accounts. For example, an admin may also want a regular user account.
 
-- Scalability: When designing this project scalability is a major concern as the requirements grow. To combat this I have implemented good code design pratices for example single responsibility princaple and restful archetecture. I have also implemented elements in the website for example popups to see aditional parrameters, and good use of components.
+- Scalability: When designing this project, scalability is a major concern as the requirements grow. I have implemented good code design practices, such as single responsibility principles and restful architecture, to combat this. I have also implemented elements in the website, such as pop-ups, to see additional parameters and use components well.
 
-The Initial Wireframe of the project with some of these attributes is visable here (please note this is the initial design and doesn't reflect the final design and state of the project):
+The Initial Wireframe of the project with some of these attributes is visible here (please note this is the initial design and doesn't reflect the final design and state of the project):
+![wireFrame](https://github.com/user-attachments/assets/21bb5adb-af08-4d38-b07d-80ab18e7e92c)
 
 
 ## Structure:
 
 ### FrontEnd:
-created using a vite template.
+Created using a vite template.
 #### /src/:
-- /App.jsx: initialises our pages and defines the routes beween them('/','/signin','/admin')
+- /App.jsx: initialises our pages and defines the routes between them('/','/signin','/admin')
 
 - /pages/: contains main .jsx component for each page(Admin,Landing,Signin)
 
-- /components/: contains suplementary components used by /src/pages
+- /components/: contains supplementary components used by /src/pages
 
 - /styles/: contains CSS styles used by the components
 
@@ -45,36 +46,36 @@ created using a vite template.
 
 ### Backend:
 #### index.js:
-- Main JavaScript file used by our application, is executed on launch
+- Main JavaScript file used by our application is executed on launch
 #### /config/mongoDB.js:
-- create a connection between the backend and mongodb server
+- create a connection between the backend and Mongodb server
 
 #### /routers/:
--    defines endpoint for different user quiries
+-    defines endpoint for different user queries
 
 #### /controllers/:
--   controlls the data manipulation of http requests and responses
+-   controls the data manipulation of HTTP requests and responses
 
 #### /services/:
--   used to quirey mongoDB and return responses. To do this it uses mongoose
+-   used to query mongoDB and return responses. To do this, it uses the Mongoose library
 
 #### /models/:
 -   contains the mongoose schemas and objects for different objects stored in the database
 
 
 ## Getting Started:
-To run the dev verson of the application we will need to proform initialisation for both the frontend and backend.
+To run the dev version of the application, we will need to perform initialisation for both the frontend and backend.
 
 ### General:
 1. clone the project (git Clone)
 
 ### Frontend:
-1. In the 'frontend' folder run 'npm install'
-2. In the 'frontend' folder run 'npm run dev'
+1. In the 'frontend' folder, run 'npm install'
+2. In the 'frontend' folder, run 'npm run dev'
 
 ### Backend:
-1. In the 'frontend' folder run 'npm install'
-2. .env file is required to run this application to be in the 'backend' directory. It contains the URI for the database, A prefered port for the backend to run on and the secret key for generating jwt auth tokens. it can be created with the template here:
+1. In the 'frontend' folder, run 'npm install'
+2. .env file is required to run this application in the 'backend' directory. It contains the URI for the database, A preferred port for the backend to run on, and the secret key for generating jwt auth tokens. It can be created with the template here:
 <br>
 <br>
 MONGODB_URI  = {MongoDB URI HERE}
@@ -83,7 +84,7 @@ PORT = {PortNum}
 <br>
 JWT_SECRET = "{secret here}"
 
-3. In the 'backend ' folder run 'npm run dev'
+3. In the 'backend ' folder, run 'npm run dev'
 
 
 
