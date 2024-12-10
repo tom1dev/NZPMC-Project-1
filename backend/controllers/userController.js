@@ -36,7 +36,7 @@ const getUserById = async (request, response) => {
 
         const user = await userService.getUserById(userId);
 
-
+        
         if(user==null || user==undefined || user.length< 1){
             response.status(404).send("User not found");
         }else if(signedInEmail === "admin" || signedInEmail.match(user[0].email)){
@@ -83,12 +83,13 @@ const createUser = async (request, response) => {
     try {
 
         const getUserByEmail = await userService.getUserByEmail(user.email);
-
+        //check if user already exists
         if(getUserByEmail && getUserByEmail.length > 0){
             response.status(400).send("User with this email already exists");
             return
         }
         
+        //creates access token for user based on user data
         const accessToken = await userService.createUser(user);
         
         if(accessToken){
@@ -110,6 +111,7 @@ const updateUser = async (request, response) => {
     try{
         const signedInEmail = request.auth.email;
         
+        //check if user has permission to update user
         if(signedInEmail !== "admin" && !signedInEmail.match(user.email)){
             response.status(403).json({message: 'Unauthorized'})
             return
@@ -141,6 +143,7 @@ const getUserEvents = async (request, response) => {
 
         console.log(userId);
 
+        //check if user has permission to view events
         if(signedInEmail !== "admin" && !signedInEmail.match(user[0].email)){
             response.status(403).json({message: 'Unauthorized'})
             return
@@ -169,6 +172,7 @@ const addUserEvent = async (request, response) => {
 
         const user = await userService.getUserById(userId);
 
+        //check if user has permission to add event
         if(signedInEmail !== "admin" && !signedInEmail.match(user[0].email)){
             response.status(403).json({message: 'Unauthorized'})
             return
