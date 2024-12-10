@@ -15,7 +15,6 @@ const EventDisplay = ({ user }) => {
     //fetches all the events and the user's events
     useEffect(() => {
         getAllEvents();
-        console.log(user);
         if (user && user.id) {
             fetchUserEvents(user.id);
         }
@@ -24,7 +23,6 @@ const EventDisplay = ({ user }) => {
     //fetches all the event ids that the user has joined in
     const fetchUserEvents = async (userid) => {
         try {
-            console.log("id" +userid);
             const userEvents = await userService.getEventsByUserId(userid);
 
             setUserEventsIds(userEvents.map((event) => event.eventId));
@@ -60,7 +58,7 @@ const EventDisplay = ({ user }) => {
 
             <h2 className={styles.eventTitle}>Events</h2>
 
-            <EventDetailsParramTitles />
+            <EventDetailsParramTitles/>
 
             {events && events.length > 0 && events.map((event) => {
                 return <EventTableEntry key={event.id} event={event} user={user} enrolled={isUserEvent(event)} />

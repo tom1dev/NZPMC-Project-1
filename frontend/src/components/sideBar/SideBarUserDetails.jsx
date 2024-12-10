@@ -4,10 +4,15 @@ import userService from '../../services/userService.js';
 
 import SideBarUserParrams from './SideBarUserParrams.jsx';
 import SideBarUserButtons from './SideBarUserButtons.jsx';
+import { use } from 'react';
 
 const SideBarUserDetails = ({user, setUser}) =>{
     const [editUserdetails, setEditUserDetails] = useState(false);
     const [userEdittedName, setUserEdittedName] = useState(user.name);
+
+    useEffect(() => {
+        setUserEdittedName(user.name);
+    }, [user]);
 
     //save the users new name to the database
     const handleSave  = async() => { 
@@ -28,7 +33,6 @@ const SideBarUserDetails = ({user, setUser}) =>{
         <h3 className={styles.userInfoTitle}>Account Details</h3>
 
         <SideBarUserParrams editUserdetails={editUserdetails} userEdittedName={userEdittedName} setUserEdittedName={setUserEdittedName} user={user} />
-
         <SideBarUserButtons editUserdetails={editUserdetails} user={user} handleSave = {handleSave} setUserEdittedName = {setUserEdittedName} setEditUserDetails ={setEditUserDetails} />
 
     </div>;
