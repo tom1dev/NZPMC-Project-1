@@ -68,16 +68,18 @@ const SideBar = ({user, setUser}) => {
             <h1 className={styles.logo}>NZPMC</h1>
             {   isLoggedIn ?
                 <>
-                    <div className={styles.userInfo}>
+                    <div className={styles.userInfoContainer}>
                         
-
-
-
                         <h3 className={styles.userInfoTitle}>Account Details</h3>
-                        <h4 className={styles.userParramTitle}>Name</h4>
-                        <input className={editUserdetails?  styles.userInput : styles.userParram } value={userEdittedName} onChange={(e) => {handleEditName(e)}} disabled={!editUserdetails}/>
-                        <h4 className={styles.userParramTitle}>Email</h4>
-                        <p className={styles.userParram}>{user.email}</p>
+
+                        <div className={styles.userInfoParramContainer}>
+                        
+                            
+                            <h4 className={styles.userParramTitle}>Name</h4>
+                            <input className={editUserdetails?  styles.userInput : styles.userParram } value={userEdittedName} onChange={(e) => {handleEditName(e)}} disabled={!editUserdetails}/>
+                            <h4 className={styles.userParramTitle}>Email</h4>
+                            <p className={styles.userParram}>{user.email}</p>
+                        </div>
 
                         <div className={styles.buttonContainer}>
                             {editUserdetails ? 

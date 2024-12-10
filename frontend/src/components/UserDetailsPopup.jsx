@@ -43,7 +43,7 @@ const UserDetailsPopup = ({ showPopup, togglePopup, user}) => {
                     <h className={style.popupTitle}>User Details</h>
                     <h2 className={style.popupName}>Name: {user.name}</h2>
                     <h2 className={style.popupEmail}>Email: {user.email}</h2>
-                    <h2 className={style.popupEmail}>Concerts:</h2>
+                    <h2 className={style.popupEmail}>Events:</h2>
 
                     {console.log(userEvents)}
                     {userEvents.length === 0 && <h2 className={style.popupEmail}>No concerts attended</h2>}

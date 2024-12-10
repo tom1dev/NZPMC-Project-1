@@ -26,3 +26,17 @@
     z-index: 1;
     backdrop-filter: blur(4px);
 }
+
+.popupParram{
+    display: flex;
+    flex-direction: row;
+    padding: 1vh;
+    margin: 0 auto;
+    border-radius: 20px; 
+    overflow: auto;  
+    width: 96%;   
+    height: inherit;
+    color:black;
+    text-align: start;
+
+}
