@@ -4,11 +4,12 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import cookieService from '../../services/cookieService.js';
 import SideBarUserDetails from './SideBarUserDetails.jsx';
+import { useNavigate  } from 'react-router-dom';
 
 
 const SideBar = ({user, setUser}) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+    const navigate = useNavigate();
 
 
     //updates sidebar elements depending on user login status
@@ -24,7 +25,11 @@ const SideBar = ({user, setUser}) => {
     //reload the page and delete the user auth cookie
     const handelSignout = () => {
         cookieService.deleteCookie('token');
-        window.location.reload();
+        if(window.location.pathname === "/admin"){
+            navigate("/");
+        }else{
+            navigate(0);
+        }
     }
     
 
