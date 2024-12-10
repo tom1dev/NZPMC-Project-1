@@ -18,7 +18,7 @@ const Landing = () => {
                 const user = await userService.getUserByToken();
                 setUser(user[0]);
             } catch (error) {
-                console.log(error);
+                console.log("Error fetching user information", error);
             }
         }
 

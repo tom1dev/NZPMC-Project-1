@@ -20,7 +20,6 @@ const SideBarUserDetails = ({user, setUser}) =>{
         } catch (error) {
             console.log('Error updating user:', error);
         }
-
         setEditUserDetails(!editUserdetails);
     }
 
