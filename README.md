@@ -2,6 +2,9 @@
 
 This is the first miniproject created by tdev429(tom).
 
+### Demo
+The live demo can be found at https://nzpmc-project-1.onrender.com/ 
+
 ## About the project:
 ### Project Stack:
  * JavaScript
