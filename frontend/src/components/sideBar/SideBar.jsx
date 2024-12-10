@@ -1,9 +1,9 @@
 
-import styles from '../styles/SideBar.module.css';
+import styles from '../../styles/SideBar.module.css';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import cookieService from '../services/cookieService';
-import SideBarUserDetails from './SideBarUserDetails';
+import cookieService from '../../services/cookieService.js';
+import SideBarUserDetails from './SideBarUserDetails.jsx';
 
 
 const SideBar = ({user, setUser}) => {

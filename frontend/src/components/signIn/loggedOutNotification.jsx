@@ -1,4 +1,4 @@
-import styles from '../styles/Landing.module.css'
+import styles from '../../styles/Landing.module.css'
 import { Outlet, Link } from "react-router-dom";
 
 

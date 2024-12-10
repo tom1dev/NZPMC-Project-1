@@ -1,6 +1,6 @@
-import style from '../styles/UserPopup.module.css';
+import style from '../../styles/UserPopup.module.css';
 import {useState,useEffect} from 'react';
-import eventService from '../services/eventService';
+import eventService from '../../services/eventService.js';
 
 const EventDetailsPopup = ({togglePopup, event}) => {
     const [eventUserAmount, setEventUserAmount] = useState(0);

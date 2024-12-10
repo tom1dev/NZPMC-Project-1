@@ -1,9 +1,9 @@
 import styles from '../styles/Landing.module.css'
 import { useEffect, useState } from 'react';
-import CreateEvent from '../components/CreateEvent';
-import EventDisplay from '../components/EventDisplay'
-import SideBar from '../components/SideBar';
-import UserDisplay from '../components/UserDisplay';
+import CreateEvent from '../components/event/CreateEvent.jsx';
+import EventDisplay from '../components/event/EventDisplay.jsx'
+import SideBar from '../components/sideBar/SideBar.jsx';
+import UserDisplay from '../components/user/UserDisplay.jsx';
 import { useNavigate } from "react-router-dom";
 
 import userService from '../services/userService';

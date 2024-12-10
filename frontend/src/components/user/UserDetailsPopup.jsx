@@ -1,8 +1,8 @@
-import style from '../styles/UserPopup.module.css';
-import EventTableEntry from './EventTableEntry.jsx';
+import style from '../../styles/UserPopup.module.css';
+import EventTableEntry from '../event/EventTableEntry.jsx';
 import {useState,useEffect} from 'react';
-import userService from '../services/userService.js';
-import eventService from '../services/eventService.js';
+import userService from '../../services/userService.js';
+import eventService from '../../services/eventService.js';
 
 
 const UserDetailsPopup = ({ showPopup, togglePopup, user}) => {

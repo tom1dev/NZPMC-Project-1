@@ -1,4 +1,4 @@
-import styles from '../styles/SideBar.module.css';
+import styles from '../../styles/SideBar.module.css';
 
 
 const SideBarUserButtons = ({editUserdetails,user, handleSave, setUserEdittedName, setEditUserDetails}) => {

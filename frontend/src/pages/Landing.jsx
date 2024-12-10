@@ -1,8 +1,8 @@
 import styles from '../styles/Landing.module.css'
 import { useEffect, useState } from 'react';
-import LoggedOutNotification from '../components/loggedOutNotification'
-import EventDisplay from '../components/EventDisplay'
-import SideBar from '../components/SideBar';
+import LoggedOutNotification from '../components/signIn/loggedOutNotification.jsx'
+import EventDisplay from '../components/event/EventDisplay.jsx'
+import SideBar from '../components/sideBar/SideBar.jsx';
 
 import userService from '../services/userService';
 

@@ -1,7 +1,7 @@
-import styles from '../styles/Landing.module.css'
+import styles from '../../styles/Landing.module.css'
 import {useState,useEffect} from 'react';
-import userService from '../services/userService';
-import EventDetailsPopup from '../components/EventDetailsPopup';
+import userService from '../../services/userService.js';
+import EventDetailsPopup from './EventDetailsPopup.jsx';
 import { useNavigate } from 'react-router-dom';
 
 

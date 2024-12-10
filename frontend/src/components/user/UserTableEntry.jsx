@@ -1,5 +1,5 @@
-import styles from '../styles/Landing.module.css'
-import UserDetailsPopup from './UserDetailsPopup';
+import styles from '../../styles/Landing.module.css'
+import UserDetailsPopup from './UserDetailsPopup.jsx';
 import { useState } from 'react';
 
 

@@ -1,7 +1,7 @@
-import styles from '../styles/Landing.module.css'
-import styleCreateEvent from '../styles/CreateEvent.module.css';
+import styles from '../../styles/Landing.module.css'
+import styleCreateEvent from '../../styles/CreateEvent.module.css';
 import { useEffect,useState } from 'react';
-import eventService from '../services/eventService';
+import eventService from '../../services/eventService.js';
 
 
 const CreateEvent = () => {

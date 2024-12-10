@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import styleSignin from '../styles/Signin.module.css';
 import { Outlet, Link } from "react-router-dom";
-import LoginForm from '../components/loginForm';
+import LoginForm from '../components/signIn/LoginForm.jsx';
 
 const SignIn = ({}) => {
     const [isSignup,setIsSignup] = useState(false);

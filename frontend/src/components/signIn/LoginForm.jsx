@@ -1,7 +1,7 @@
-import styleSignin from '../styles/Signin.module.css';
+import styleSignin from '../../styles/Signin.module.css';
 import {useState, useEffect} from 'react';
-import signinService from '../services/signInService.js';
-import userService  from '../services/userService';
+import signinService from '../../services/signInService.js';
+import userService  from '../../services/userService.js';
 import { useNavigate } from "react-router-dom";
 
 

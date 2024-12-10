@@ -1,8 +1,8 @@
 
-import styles from '../styles/Landing.module.css'
+import styles from '../../styles/Landing.module.css'
 import { useEffect,useState } from 'react';
-import UserTableEntry from '../components/UserTableEntry'
-import userService from '../services/userService';
+import UserTableEntry from './UserTableEntry.jsx'
+import userService from '../../services/userService.js';
 
 
 const UserDisplay = () =>{

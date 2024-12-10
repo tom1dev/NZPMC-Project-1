@@ -1,9 +1,9 @@
-import styles from '../styles/SideBar.module.css';
+import styles from '../../styles/SideBar.module.css';
 import { useState, useEffect } from 'react';
-import userService from '../services/userService';
+import userService from '../../services/userService.js';
 
-import SideBarUserParrams from './SideBarUserParrams';
-import SideBarUserButtons from './SideBarUserButtons';
+import SideBarUserParrams from './SideBarUserParrams.jsx';
+import SideBarUserButtons from './SideBarUserButtons.jsx';
 
 const SideBarUserDetails = ({user, setUser}) =>{
     const [editUserdetails, setEditUserDetails] = useState(false);
