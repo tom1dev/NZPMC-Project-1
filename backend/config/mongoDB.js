@@ -2,7 +2,7 @@ require('dotenv').config()
 
 const mongoose = require('mongoose')
 
-
+//initialises the database connection
 const dbConnect = async () => {
     const url = process.env.MONGODB_URI;
     
