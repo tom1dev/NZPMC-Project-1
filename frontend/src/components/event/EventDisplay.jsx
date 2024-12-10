@@ -15,8 +15,8 @@ const EventDisplay = ({ user }) => {
     //fetches all the events and the user's events
     useEffect(() => {
         getAllEvents();
-
-        if (user && user.length > 0) {
+        console.log(user);
+        if (user && user.id) {
             fetchUserEvents(user.id);
         }
     }, [user]);
@@ -24,7 +24,9 @@ const EventDisplay = ({ user }) => {
     //fetches all the event ids that the user has joined in
     const fetchUserEvents = async (userid) => {
         try {
+            console.log("id" +userid);
             const userEvents = await userService.getEventsByUserId(userid);
+
             setUserEventsIds(userEvents.map((event) => event.eventId));
         } catch (error) {
             console.log(error);
@@ -43,6 +45,8 @@ const EventDisplay = ({ user }) => {
 
     //checks if the event is in the user's events
     const isUserEvent = (event) => {
+
+
         for (let i = 0; i < userEventIds.length; i++) {
             if (userEventIds[i] === event.id) {
                 return true;

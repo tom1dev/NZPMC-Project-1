@@ -8,7 +8,7 @@ import userService from '../services/userService';
 
 
 const Landing = () => {
-    const [user, setUser] = useState([]);
+    const [user, setUser] = useState({});
 
 
     //gets user information with its auth cookie
