@@ -38,7 +38,7 @@ const Landing = () => {
                 <h1 className={styles.landingPageTitle}>Event signup</h1>
                 
                 {/*if user is not logged in, display a notification*/}
-                {!user && <LoggedOutNotification />}
+                {(!user|| !user.name) && <LoggedOutNotification />}
                 
                 <EventDisplay user={user} />
             </div>
